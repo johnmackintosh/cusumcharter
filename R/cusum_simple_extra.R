@@ -21,7 +21,7 @@ cusum_simple_extra <- function(x, target = NULL) {
   cusumx <- cumsum(si)
   cusum_target <- cusumx + target
 
-  out_df <- cbind(x, target, si,cusumx,cusum_target)
+  out_df <- data.frame(x, target, si,cusumx,cusum_target)
   return(out_df)
 
 }

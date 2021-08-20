@@ -46,6 +46,18 @@ CuSum_res <- cusum_simple(test_vec, target = 0.16)
 CuSum_res
 ```
 
+
+## Expanded outputs with cusum_simple_extra
+
+This function returns a dataframe
+
+```{r, example2}
+test_vec2 <- c(1,1,2,11,3,5,7,2,4,3,5)
+cusum_simple_extra(test_vec2)
+```
+
+
+
 ## Planned functionality
 
 1.  CuSums for single vector with no control limits
