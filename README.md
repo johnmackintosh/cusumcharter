@@ -7,6 +7,9 @@
 
 [![R-CMD-check](https://github.com/johnmackintosh/cusumcharter/workflows/R-CMD-check/badge.svg)](https://github.com/johnmackintosh/cusumcharter/actions)
 
+[![Codecov test
+coverage](https://codecov.io/gh/johnmackintosh/cusumcharter/branch/master/graph/badge.svg)](https://codecov.io/gh/johnmackintosh/cusumcharter?branch=master)
+
 <!-- badges: end -->
 
 The goal of cusumcharter is to create both simple CuSum charts, with and
