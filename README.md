@@ -61,6 +61,49 @@ cusum_simple_extra(test_vec2)
 #> 11  5      4  1      0            4
 ```
 
+## CuSum control limits
+
+Two additional functions allow you to calculate control limits from a
+single vector and plot a CuSum chart with control limits. This is for a
+single vector and one chart at a time.
+
+``` r
+test_vec3 <- c(1,1,2,3,5,7,11,7,5,7,8,9,5)
+controls <- cusum_control(test_vec3, target = 4)
+controls
+#>     x target variance cusum      cplus cum_nplus      cneg cum_nneg ucl lcl
+#> 1   1      4       -3    -3  0.0000000         0 -2.113475       -1   5  -5
+#> 2   1      4       -3    -6  0.0000000         0 -4.226950       -2   5  -5
+#> 3   2      4       -2    -8  0.0000000         0 -5.340426       -3   5  -5
+#> 4   3      4       -1    -9  0.0000000         0 -5.453901       -4   5  -5
+#> 5   5      4        1    -8  0.1134752         1 -3.567376       -5   5  -5
+#> 6   7      4        3    -5  2.2269504         2  0.000000        0   5  -5
+#> 7  11      4        7     2  8.3404255         3  0.000000        0   5  -5
+#> 8   7      4        3     5 10.4539007         4  0.000000        0   5  -5
+#> 9   5      4        1     6 10.5673759         5  0.000000        0   5  -5
+#> 10  7      4        3     9 12.6808511         6  0.000000        0   5  -5
+#> 11  8      4        4    13 15.7943262         7  0.000000        0   5  -5
+#> 12  9      4        5    18 19.9078014         8  0.000000        0   5  -5
+#> 13  5      4        1    19 20.0212766         9  0.000000        0   5  -5
+#>    centre obs
+#> 1       0   1
+#> 2       0   2
+#> 3       0   3
+#> 4       0   4
+#> 5       0   5
+#> 6       0   6
+#> 7       0   7
+#> 8       0   8
+#> 9       0   9
+#> 10      0  10
+#> 11      0  11
+#> 12      0  12
+#> 13      0  13
+cusum_control_plot(controls, title_text = "sample CuSum with controls shows out of control since 7th observation")
+```
+
+<img src="man/figures/README-example3-1.png" width="100%" />
+
 ## Planned functionality
 
 1.  CuSums for single vector with no control limits

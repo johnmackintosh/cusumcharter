@@ -46,7 +46,6 @@ CuSum_res <- cusum_simple(test_vec, target = 0.16)
 CuSum_res
 ```
 
-
 ## Expanded outputs with cusum_simple_extra
 
 This function returns a dataframe
@@ -55,6 +54,20 @@ This function returns a dataframe
 test_vec2 <- c(1,1,2,11,3,5,7,2,4,3,5)
 cusum_simple_extra(test_vec2)
 ```
+
+
+## CuSum control limits
+
+Two additional functions allow you to calculate control limits from a single vector and plot a CuSum chart with control limits. This is for a single vector and one chart at a time. 
+
+```{r, example3}
+test_vec3 <- c(1,1,2,3,5,7,11,7,5,7,8,9,5)
+controls <- cusum_control(test_vec3, target = 4)
+controls
+cusum_control_plot(controls, title_text = "sample CuSum with controls shows out of control since 7th observation")
+```
+
+
 
 
 
