@@ -29,7 +29,8 @@ jobs:
           restore-keys: r-
 
       - name: Install packages
-        run: |install.packages("remotes")
+        run: |
+          install.packages("remotes")
           remotes::install_local(".")
           remotes::install_cran("rmarkdown")
           remotes::install_cran("ggplot2")
