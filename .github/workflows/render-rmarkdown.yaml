@@ -36,6 +36,7 @@ jobs:
           remotes::install_cran("ggplot2")
           remotes::install_cran("scales")
           remotes::install_cran("glue")
+          remotes::install_cran("data.table")
           R -e 'install.packages("renv")'
           R -e 'renv::restore()'
 
