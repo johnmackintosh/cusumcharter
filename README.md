@@ -15,7 +15,10 @@ coverage](https://codecov.io/gh/johnmackintosh/cusumcharter/branch/master/graph/
 The goal of cusumcharter is to create both simple CuSum charts, with and
 without control limits from a vector, or to create multiple CuSum
 charts, with or without control limits, from a grouped dataframe, tibble
-or data.table
+or data.table.  
+
+Various functions are available to perform calculations and to plot the results
+
 
 ## Installation
 
