@@ -29,7 +29,12 @@ jobs:
           restore-keys: r-
 
       - name: Install packages
-        run: |
+        run: |install.packages("remotes")
+          remotes::install_local(".")
+          remotes::install_cran("rmarkdown")
+          remotes::install_cran("ggplot2")
+          remotes::install_cran("scales")
+          remotes::install_cran("glue")
           R -e 'install.packages("renv")'
           R -e 'renv::restore()'
 
