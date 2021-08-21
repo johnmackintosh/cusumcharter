@@ -20,4 +20,5 @@ URL: https://github.com/johnmackintosh/cusumcharter
 BugReports: https://github.com/johnmackintosh/cusumcharter/issues
 Imports: 
     rlang,
-    ggplot2
+    ggplot2,
+    data.table

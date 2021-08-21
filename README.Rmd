@@ -64,10 +64,42 @@ Two additional functions allow you to calculate control limits from a single vec
 test_vec3 <- c(1,1,2,3,5,7,11,7,5,7,8,9,5)
 controls <- cusum_control(test_vec3, target = 4)
 controls
-cusum_control_plot(controls, title_text = "sample CuSum with controls shows out of control since 7th observation")
+```
+
+## CuSum Control Chart
+
+```{r}
+test_vec3 <- c(1,1,2,3,5,7,11,7,5,7,8,9,5)
+controls <- cusum_control(test_vec3, target = 4)
+cusum_control_plot(controls, do_facet = FALSE, title_text = "sample CuSum with controls shows out of control since 7th observation")
 ```
 
 
+## Faceted CuSum Control Charts
+
+```{r}
+library(data.table)
+library(cusumcharter)
+
+testdata <- data.frame(
+  stringsAsFactors = FALSE,
+  N = c(1L,2L,1L,3L,1L,1L,1L,1L,1L,
+        2L,1L,1L,1L,10L,7L,2L,3L,5L),
+  metric = c("metric1","metric1","metric1","metric1","metric1",
+           "metric1","metric1","metric1","metric1","metric2",
+           "metric2","metric2","metric2","metric2","metric2",
+           "metric2","metric2","metric2"))
+
+testlist <- split(testdata$N,testdata$metric)
+
+testres <- lapply(testlist, cusumcharter::cusum_control)
+
+testres <- data.table::rbindlist(testres,fill = TRUE, idcol = TRUE)
+
+p <- cusum_control_plot(testres, do_facet = TRUE, title_text = " faceted CuSum Control plots")
+p
+
+```
 
 
 

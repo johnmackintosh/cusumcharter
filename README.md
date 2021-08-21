@@ -15,10 +15,7 @@ coverage](https://codecov.io/gh/johnmackintosh/cusumcharter/branch/master/graph/
 The goal of cusumcharter is to create both simple CuSum charts, with and
 without control limits from a vector, or to create multiple CuSum
 charts, with or without control limits, from a grouped dataframe, tibble
-or data.table.  
-
-Various functions are available to perform calculations and to plot the results
-
+or data.table
 
 ## Installation
 
@@ -102,10 +99,44 @@ controls
 #> 11      0  11
 #> 12      0  12
 #> 13      0  13
-cusum_control_plot(controls, title_text = "sample CuSum with controls shows out of control since 7th observation")
 ```
 
-<img src="man/figures/README-example3-1.png" width="100%" />
+## CuSum Control Chart
+
+``` r
+test_vec3 <- c(1,1,2,3,5,7,11,7,5,7,8,9,5)
+controls <- cusum_control(test_vec3, target = 4)
+cusum_control_plot(controls, do_facet = FALSE, title_text = "sample CuSum with controls shows out of control since 7th observation")
+```
+
+<img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
+
+## Faceted CuSum Control Charts
+
+``` r
+library(data.table)
+library(cusumcharter)
+
+testdata <- data.frame(
+  stringsAsFactors = FALSE,
+  N = c(1L,2L,1L,3L,1L,1L,1L,1L,1L,
+        2L,1L,1L,1L,10L,7L,2L,3L,5L),
+  metric = c("metric1","metric1","metric1","metric1","metric1",
+           "metric1","metric1","metric1","metric1","metric2",
+           "metric2","metric2","metric2","metric2","metric2",
+           "metric2","metric2","metric2"))
+
+testlist <- split(testdata$N,testdata$metric)
+
+testres <- lapply(testlist, cusumcharter::cusum_control)
+
+testres <- data.table::rbindlist(testres,fill = TRUE, idcol = TRUE)
+
+p <- cusum_control_plot(testres, do_facet = TRUE, title_text = " faceted CuSum Control plots")
+p
+```
+
+<img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
 
 ## Planned functionality
 
