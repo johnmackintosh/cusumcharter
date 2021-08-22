@@ -10,7 +10,7 @@ cusum_control(
   std_dev = NULL,
   desired_shift = 1,
   k = 0.5,
-  h = 5
+  h = 4
 )
 }
 \arguments{
@@ -18,16 +18,19 @@ cusum_control(
 
 \item{target}{target value for comparison, the mean of x will be used if missing}
 
-\item{std_dev}{target value for standard deviation, the screened moving range of x will be used if missing}
+\item{std_dev}{Defaults to the screened moving range of x.
+A known or desired value for standard deviation can be supplied instead.}
 
-\item{desired_shift}{how many standard deviations do you want to detect, between 0.5 and 1 is the usual default}
+\item{desired_shift}{how many standard deviations do you want to detect?
+This value is typically between  0.5 to 1. Defaults to 1.}
 
-\item{k}{allowable slack - defaults to half of standard deviation}
+\item{k}{allowable slack - defaults to half the standard deviation multiplied by desired shift}
 
-\item{h}{control limits usually between 4 and 5}
+\item{h}{action limits -  usually between 4 and 5, defaults to 4.
+The standard deviation is multiplied by this value to determine the upper and lower limits on the chart}
 }
 \value{
-dataframe showing original inputs and calculated control limits
+data.frame showing original inputs and calculated control limits
 }
 \description{
 cusum_control
