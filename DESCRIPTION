@@ -1,12 +1,12 @@
 Package: cusumcharter
-Title: CuSum Charts At Scale
+Title: Easier CuSum Control Charts 
 Version: 0.0.0.9000
 Authors@R: 
     person(given = "John",
            family = "MacKintosh",
            role = c("aut", "cre"),
            email = "johnmackintosh.jm@gmail.com")
-Description: What the package does (one paragraph).
+Description: Functions to make creating CuSum charts easier, including faceted plots.
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
