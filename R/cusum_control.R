@@ -108,8 +108,8 @@ cusum_control <- function(x,
 
 
   out_df <- data.frame(x,target, variance,cusum,cplus,cum_nplus,cneg,cum_nneg)
-  out_df$ucl <- h
-  out_df$lcl <- h*-1
+  out_df$ucl <- h * std_dev
+  out_df$lcl <- (h * std_dev) * -1
   out_df$centre <- 0L
   out_df$obs <- seq(from = 1, to = nrows, by = 1)
   return(out_df)
