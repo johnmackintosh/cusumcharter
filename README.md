@@ -40,7 +40,7 @@ CuSum_res
 #> [1] 0.175 0.167 0.157 0.204 0.180 0.232 0.238
 ```
 
-## Expanded outputs with cusum\_simple\_extra
+## Expanded outputs with cusum\_single\_df
 
 This function takes a single vector as input and returns a dataframe
 with additional information used to calculate the CuSum statistic
