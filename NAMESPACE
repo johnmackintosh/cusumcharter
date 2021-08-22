@@ -2,7 +2,7 @@
 
 export(cusum_control)
 export(cusum_control_plot)
-export(cusum_simple)
-export(cusum_simple_extra)
+export(cusum_single)
+export(cusum_single_df)
 import(data.table)
 importFrom(rlang,.data)

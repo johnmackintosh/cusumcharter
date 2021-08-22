@@ -28,25 +28,26 @@ remotes::install_github("johnmackintosh/cusumcharter")
 
 ## A Simple CuSum calculation
 
-This returns the CuSum statistics for a simple vector, centred on a
+This returns the CuSum statistics for a single vector, centred on a
 supplied target value:
 
 ``` r
 library(cusumcharter)
 test_vec <- c(0.175, 0.152, 0.15, 0.207, 0.136, 0.212, 0.166)
 
-CuSum_res <- cusum_simple(test_vec, target = 0.16)
+CuSum_res <- cusum_single(test_vec, target = 0.16)
 CuSum_res
 #> [1] 0.175 0.167 0.157 0.204 0.180 0.232 0.238
 ```
 
 ## Expanded outputs with cusum\_simple\_extra
 
-This function returns a dataframe
+This function takes a single vector as input and returns a dataframe
+with additional information used to calculate the CuSum statistic
 
 ``` r
 test_vec2 <- c(1,1,2,11,3,5,7,2,4,3,5)
-cusum_simple_extra(test_vec2)
+cusum_single_df(test_vec2)
 #>     x target si cusumx cusum_target
 #> 1   1      4 -3     -3            1
 #> 2   1      4 -3     -6           -2

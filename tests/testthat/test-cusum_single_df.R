@@ -1,4 +1,4 @@
-test_that("cusum_simple_extra works", {
+test_that("cusum_single_df works", {
 
   test_vec <- c(1,1,2,11,3,5,7,2,4,3,5)
    x <-  c(1,1,2,11,3,5,7,2,4,3,5)
@@ -9,7 +9,7 @@ test_that("cusum_simple_extra works", {
 
   output <- data.frame(x, target, si,cusumx,cusum_target)
 
-  res <- cusum_simple_extra(test_vec)
+  res <- cusum_single_df(test_vec)
 
 
   expect_equal(output, res)
@@ -26,7 +26,7 @@ test_that("target replaces mean and gives expected results in output df", {
   cusum_target <- c(1,-3,-6,0,-2,-2,0,-3,-4,-6,-6)
 
   output2 <- data.frame(x, target, si,cusumx,cusum_target)
-  res2 <- cusum_simple_extra(test_vec2, target = 5)
+  res2 <- cusum_single_df(test_vec2, target = 5)
   expect_equal(output2, res2)
 
 })
@@ -35,5 +35,5 @@ test_that("target replaces mean and gives expected results in output df", {
 test_that("non numeric vector fails", {
 
   test_vec3 <- as.character(c(1,1,2,11,3,5,7,2,4,3,5))
-  expect_error(cusum_simple(test_vec3, target = 5))
+  expect_error(cusum_single_df(test_vec3, target = 5))
 })
