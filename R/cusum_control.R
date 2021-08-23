@@ -23,29 +23,11 @@ cusum_control <- function(x,
                           std_dev = NULL,
                           desired_shift = 1,
                           k = 0.5,
-                          h = 4){
-
-  # Variables
-  target <-  if (is.null(target)) {target = mean(x, na.rm = TRUE)} else target
-  mr <- mean(abs(diff(x)), na.rm = TRUE)
-  std_dev <- if (is.null(std_dev)) {std_dev = mr / 1.128} else std_dev
-  k <- if (is.null(k)) {k = (0.5 * std_dev) * desired_shift} else (std_dev * k) * desired_shift
-  h <- if (is.null(h)) {4} else h
-
-  ucl <- target + k
-  lcl <- target - k
-  nrows <- NROW(x)
-
-  # helper vectors
-  cplus <- rep(0,length(x))
-  cneg <- rep(0,length(x))
-
+                          h = 4) {
   # functions
   positives_iterator <- function(x, pos = cplus, limit = ucl) {
-
-
     for (i in 2:length(x)) {
-     pos[i] <- max(0,(x[i] - limit + pos[i - 1] ))
+      pos[i] <- max(0, pos[i - 1] + x[i] - target - k)
 
     }
     pos
@@ -54,21 +36,18 @@ cusum_control <- function(x,
 
 
   negatives_iterator <- function(x, pos = cneg, limit = lcl) {
-
-
     for (i in 2:length(x)) {
-      pos[i] <-  max(0,(limit - x[i] + pos[i-1]))
+      pos[i] <- min(0, pos[i - 1] + x[i] - target + k)
     }
     pos
 
   }
 
   pos_count <- function(x) {
-    ifelse(x == 0,0,1)
+    ifelse(x == 0, 0, 1)
   }
 
-  cumulatives_iterator <- function(compar_col,x) {
-
+  cumulatives_iterator <- function(compar_col, x) {
     x[1] <- compar_col[1]
 
     for (i in 2:length(compar_col)) {
@@ -83,40 +62,74 @@ cusum_control <- function(x,
 
 
 
-  # calcs
+  # Variables
+  target <-
+    if (is.null(target)) {
+      target = mean(x, na.rm = TRUE)
+    } else
+      target
+
+  mr <- mean(abs(diff(x)), na.rm = TRUE)
+
+  std_dev <- if (is.null(std_dev)) {std_dev = mr / 1.128} else std_dev
+
+  k <- if (is.null(k)) {
+    k = (0.5 * std_dev) * desired_shift
+  } else {
+    (std_dev * k) * desired_shift
+  }
+
+  h <- if (is.null(h)) {4} else {h}
+
+  ucl <- target + k
+  lcl <- target - k
+  nrows <- NROW(x)
+
+  # helper vectors
+  cplus <- rep(0, length(x))
+  cneg <- rep(0, length(x))
+
+  # calculations
 
   variance <- x - target
   cusum <- cumsum(variance)
 
+  cplus <- rep(0, length(x))
+  cplus[1] <- max(0, (x[1] - ucl + 0)) #initialise first value to zero
 
-  cplus <- rep(0,length(x))
-  cplus[1] <- max(0,(x[1] - ucl[1] + 0))
+  cneg <- rep(0, length(x))
+  cneg[1] <- min(0, 0 + x[1] - target + k) #initialise first value to zero
 
-  cneg <- rep(0,length(x))
-  cneg[1] <- max(0,(lcl - x[1] + 0))
 
   cplus <- positives_iterator(x = x)
   cneg <- negatives_iterator(x = x)
   nplus <- pos_count(cplus)
   nneg <- pos_count(cneg)
 
-  cum_nplus <- rep(0,length(x))
-  cum_nplus[1] <- nplus[1]
-  cum_nneg <- rep(0,length(x))
-  cum_nneg[1] <- nneg[1]
+  cum_nplus <- rep(0, length(x))
+  cum_nplus[1] <- nplus[1] # initialise first value to 1st value of nplus
+  cum_nneg <- rep(0, length(x))
+  cum_nneg[1] <- nneg[1] # initialise first value to 1st value of nneg
 
   cum_nplus <- cumulatives_iterator(compar_col = nplus, x = cum_nplus)
   cum_nneg <- cumulatives_iterator(compar_col = nneg, x = cum_nneg)
-  cum_nneg <- cum_nneg * -1
-  cneg <- cneg * -1
 
 
-  out_df <- data.frame(x, target, variance, std_dev, cusum, cplus, cneg,
-                       cum_nplus, cum_nneg)
+  out_df <-
+    data.frame(x,
+               target,
+               variance,
+               std_dev,
+               cusum,
+               cplus,
+               cneg,
+               cum_nplus,
+               cum_nneg)
+
   out_df$ucl <- h * std_dev
   out_df$lcl <- (h * std_dev) * -1
   out_df$centre <- 0L
   out_df$obs <- seq(from = 1, to = nrows, by = 1)
+
   return(out_df)
 }
-
