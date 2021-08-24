@@ -40,3 +40,13 @@ test_that("na elements fail", {
   test_vec3 <- c(0.175, NA, 0.15, 0.207, 0.136, NA, 0.166)
   expect_error(cusum_control(test_vec3, target = 0.16))
 })
+
+test_that("high k generates warning",{
+  test_vec <- c(1,1,2,11,3,5,7,2,4,3,5)
+  expect_warning(cusum_control(test_vec,k = 2))
+})
+
+test_that("high h generates warning",{
+  test_vec <- c(1,1,2,11,3,5,7,2,4,3,5)
+  expect_warning(cusum_control(test_vec, h = 6))
+})

@@ -34,10 +34,10 @@ cusum_control <- function(x,
   if (is.null(target)) {message("no target value supplied, so using the mean of x")}
 
   if (is.null(k)) {message("k was not supplied so using 0.5 as a default")}
-  if (!is.null(k) && k > 1) {warning("k exceeds 1. It should normally be between 0.5 and 1", call = TRUE, immediate. = TRUE)}
+  if (!is.null(k) && k > 1) {warning("k exceeds 1. It should normally be between 0.5 and 1", immediate. = TRUE)}
 
   if (is.null(h)) {message("h was not supplied so using 4 as a default")}
-  if (!is.null(h) && h > 5) {warning("h exceeds 5. It should normally be between 4 and 5", call = TRUE, immediate. = TRUE)}
+  if (!is.null(h) && h > 5) {warning("h exceeds 5. It should normally be between 4 and 5", immediate. = TRUE)}
 
 
 

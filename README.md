@@ -10,6 +10,13 @@
 [![Codecov test
 coverage](https://codecov.io/gh/johnmackintosh/cusumcharter/branch/master/graph/badge.svg)](https://codecov.io/gh/johnmackintosh/cusumcharter?branch=master)
 
+[![Render
+README](https://github.com/johnmackintosh/cusumcharter/actions/workflows/render-readme.yaml/badge.svg)](https://github.com/johnmackintosh/cusumcharter/actions/workflows/render-readme.yaml)
+
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/cusumcharter)](https://CRAN.R-project.org/package=cusumcharter)
 <!-- badges: end -->
 
 The goal of cusumcharter is to create both simple CuSum charts, with and
