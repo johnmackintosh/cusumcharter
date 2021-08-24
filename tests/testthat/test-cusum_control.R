@@ -50,3 +50,32 @@ test_that("high h generates warning",{
   test_vec <- c(1,1,2,11,3,5,7,2,4,3,5)
   expect_warning(cusum_control(test_vec, h = 6))
 })
+
+
+test_that("k = NULL generates message", {
+  test_vec <- c(1,1,2,11,3,5,7,2,4,3,5)
+  expect_message(cusum_control(test_vec,
+                               target = 4,
+                               k = NULL,
+                               h = 5),
+                 "k was not supplied so using 0.5 as a default")
+})
+
+test_that("h = NULL generates message", {
+  test_vec <- c(1,1,2,11,3,5,7,2,4,3,5)
+  expect_message(cusum_control(test_vec,
+                               target = 4,
+                               k = 1,
+                               h = NULL),
+                 "h was not supplied so using 4 as a default")
+})
+
+
+test_that("target value propagates", {
+  test_vec <- c(1,1,2,11,3,5,7,2,4,3,5)
+  target1 <- rep(6,11)
+  res <- cusum_control(test_vec,target = 6)
+
+  expect_equal(target1,res$target)
+
+})
