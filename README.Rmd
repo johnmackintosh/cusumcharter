@@ -48,7 +48,7 @@ CuSum_res
 
 ## Expanded outputs with cusum_single_df
 
-This function takes a single vector as input and returns a dataframe with additional information used to calculate the CuSum statistic
+This function takes a single vector as input and returns a data.frame with additional information used to calculate the CuSum statistic
 
 ```{r, example2}
 test_vec2 <- c(1,1,2,11,3,5,7,2,4,3,5)

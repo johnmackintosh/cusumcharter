@@ -42,7 +42,7 @@ CuSum_res
 
 ## Expanded outputs with cusum\_single\_df
 
-This function takes a single vector as input and returns a dataframe
+This function takes a single vector as input and returns a data.frame
 with additional information used to calculate the CuSum statistic
 
 ``` r
@@ -130,6 +130,8 @@ testdata <- data.frame(
 testlist <- split(testdata$N,testdata$metric)
 
 testres <- lapply(testlist, cusumcharter::cusum_control)
+#> no target value supplied, so using the mean of x
+#> no target value supplied, so using the mean of x
 
 testres <- data.table::rbindlist(testres,fill = TRUE, idcol = TRUE)
 

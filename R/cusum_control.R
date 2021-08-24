@@ -24,6 +24,23 @@ cusum_control <- function(x,
                           desired_shift = 1,
                           k = 0.5,
                           h = 4) {
+  stopifnot(is.numeric(x) | is.double(x) | is.integer(x))
+  stopifnot(!is.na(x))
+  stopifnot(is.numeric(target) | is.double(target) | is.integer(target) | is.null(target))
+  stopifnot(is.numeric(desired_shift) | is.double(desired_shift) | is.integer(desired_shift))
+  stopifnot(is.numeric(k) | is.double(k) | is.integer(k) | is.null(k))
+  stopifnot(is.numeric(h) | is.double(h) | is.integer(h) | is.null(h))
+
+  if (is.null(target)) {message("no target value supplied, so using the mean of x")}
+
+  if (is.null(k)) {message("k was not supplied so using 0.5 as a default")}
+  if (!is.null(k) && k > 1) {warning("k exceeds 1. It should normally be between 0.5 and 1", call = TRUE, immediate. = TRUE)}
+
+  if (is.null(h)) {message("h was not supplied so using 4 as a default")}
+  if (!is.null(h) && h > 5) {warning("h exceeds 5. It should normally be between 4 and 5", call = TRUE, immediate. = TRUE)}
+
+
+
   # functions
   positives_iterator <- function(x, pos = cplus, limit = ucl) {
     for (i in 2:length(x)) {
@@ -66,8 +83,10 @@ cusum_control <- function(x,
   target <-
     if (is.null(target)) {
       target = mean(x, na.rm = TRUE)
-    } else
+    } else {
       target
+
+    }
 
   mr <- mean(abs(diff(x)), na.rm = TRUE)
 

@@ -13,7 +13,9 @@
 #' cusum_single(test_vec)
 #'
 cusum_single <- function(x, target = NULL) {
-  stopifnot(is.numeric(x) | is.double(x))
+  stopifnot(is.numeric(x) | is.double(x) | is.integer(x))
+  stopifnot(!is.na(x))
+  stopifnot(is.numeric(target) | is.double(target) | is.integer(target) | is.null(target))
 
   target <-  if (is.null(target)) {target = mean(x, na.rm = TRUE)} else target
   si <- x - target

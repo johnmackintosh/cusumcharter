@@ -37,3 +37,9 @@ test_that("non numeric vector fails", {
   test_vec3 <- as.character(c(1,1,2,11,3,5,7,2,4,3,5))
   expect_error(cusum_single_df(test_vec3, target = 5))
 })
+
+test_that("na elements fail", {
+
+  test_vec3 <- c(0.175, NA, 0.15, 0.207, 0.136, NA, 0.166)
+  expect_error(cusum_single_df(test_vec3, target = 0.16))
+})

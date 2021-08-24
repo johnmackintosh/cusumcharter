@@ -26,3 +26,10 @@ test_that("non numeric vector fails", {
   test_vec3 <- as.character(c(0.175, 0.152, 0.15, 0.207, 0.136, 0.212, 0.166))
   expect_error(cusum_single(test_vec3, target = 0.16))
 })
+
+
+test_that("na elements fail", {
+
+  test_vec3 <- c(0.175, NA, 0.15, 0.207, 0.136, NA, 0.166)
+  expect_error(cusum_single(test_vec3, target = 0.16))
+})
