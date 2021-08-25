@@ -79,7 +79,7 @@ cusum_control_plot(controls, do_facet = FALSE, title_text = "sample CuSum with c
 ```
 
 
-## Faceted CuSum Control Charts 
+## Multiple CuSum Control Charts 
 
 ```{r}
 library(data.table)
