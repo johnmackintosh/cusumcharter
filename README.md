@@ -119,7 +119,7 @@ cusum_control_plot(controls, do_facet = FALSE, title_text = "sample CuSum with c
 
 <img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
 
-## Faceted CuSum Control Charts
+## Multiple CuSum Control Charts
 
 ``` r
 library(data.table)
