@@ -36,3 +36,30 @@ expect_equal(p_output,res)
 }
 )
 
+
+test_that("facets work", {
+  library(data.table)
+  library(cusumcharter)
+
+  testdata <- data.frame(
+    stringsAsFactors = FALSE,
+    N = c(1L,2L,1L,3L,1L,1L,1L,1L,1L,
+          2L,1L,1L,1L,10L,7L,2L,3L,5L),
+    metric = c("metric1","metric1","metric1","metric1","metric1",
+               "metric1","metric1","metric1","metric1","metric2",
+               "metric2","metric2","metric2","metric2","metric2",
+               "metric2","metric2","metric2"))
+
+  testlist <- split(testdata$N,testdata$metric)
+
+  testres <- lapply(testlist, cusumcharter::cusum_control)
+
+  testres <- data.table::rbindlist(testres,fill = TRUE, idcol = TRUE)
+
+  p <- cusum_control_plot(testres, do_facet = TRUE, title_text = " faceted CuSum Control plots")
+
+  expect_equal(p$facet$vars(),".id")
+
+
+
+})

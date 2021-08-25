@@ -7,7 +7,9 @@
 #' @return ggplot2 object suited for further customisation
 #'
 #' @importFrom rlang .data
-#'
+#' @importFrom ggplot2 aes ggplot geom_line geom_point geom_segment geom_ribbon
+#' @importFrom ggplot2 theme element_text element_blank labs theme_minimal
+#' @importFrom ggplot2 ggtitle facet_wrap vars scale_x_date scale_y_continuous
 #' @export
 #'
 #' @examples
