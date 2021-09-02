@@ -75,7 +75,7 @@ controls
 ```{r}
 test_vec3 <- c(1,1,2,3,5,7,11,7,5,7,8,9,5)
 controls <- cusum_control(test_vec3, target = 4)
-cusum_control_plot(controls, do_facet = FALSE, title_text = "sample CuSum with controls shows out of control since 7th observation")
+cusum_control_plot(controls, xvar = obs, title_text = "sample CuSum with controls shows out of control since 7th observation")
 ```
 
 
@@ -100,7 +100,7 @@ testres <- lapply(testlist, cusumcharter::cusum_control)
 
 testres <- data.table::rbindlist(testres,fill = TRUE, idcol = TRUE)
 
-p <- cusum_control_plot(testres, do_facet = TRUE, title_text = " faceted CuSum Control plots")
+p <- cusum_control_plot(testres, xvar = obs, facet_var = .id, title_text = " faceted CuSum Control plots")
 p
 
 ```

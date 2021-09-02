@@ -25,7 +25,7 @@ test_that("plots have known output", {
 
   controls <- cusum_control(test_vec)
 
-p <- cusum_control_plot(controls, do_facet = FALSE, title_text = "sample CuSum with controls shows out of control since 7th observation")
+p <- cusum_control_plot(controls, xvar = obs, title_text = "sample CuSum with controls shows out of control since 7th observation")
 
 p_output <- p$data
 p_output$ucl <- round(p_output$ucl,3)
@@ -56,7 +56,7 @@ test_that("facets work", {
 
   testres <- data.table::rbindlist(testres,fill = TRUE, idcol = TRUE)
 
-  p <- cusum_control_plot(testres, do_facet = TRUE, title_text = " faceted CuSum Control plots")
+  p <- cusum_control_plot(testres, xvar = obs, facet_var = .id, title_text = " faceted CuSum Control plots")
 
   expect_equal(p$facet$vars(),".id")
 
