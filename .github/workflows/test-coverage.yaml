@@ -3,10 +3,12 @@ on:
     branches:
       - main
       - master
+      - control_plot
   pull_request:
     branches:
       - main
       - master
+      - control_plot
 
 name: test-coverage
 
