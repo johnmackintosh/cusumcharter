@@ -1,6 +1,6 @@
 on:
   push:
-    branches: control_plot
+    branches: master
 
 name: Render README
 
@@ -21,7 +21,7 @@ jobs:
           remotes::install_cran("scales")
           remotes::install_cran("glue")
           remotes::install_cran("data.table")
- 
+
         shell: Rscript {0}
       - name: Render README
         run: Rscript -e 'rmarkdown::render("README.Rmd")'

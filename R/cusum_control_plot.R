@@ -30,7 +30,7 @@ cusum_control_plot <- function(df,
                                datebreaks = NULL,
                                title_text = NULL,
                                ...) {
-facet_var <- rlang::enquo(facet_var)
+
 
 # points outside upper limits
 above_ucl <- df[df[["cplus"]] > df[["ucl"]],]
@@ -73,6 +73,17 @@ p <- p + ggplot2::theme(panel.grid.major = ggplot2::element_blank(),
 p <- p + ggplot2::labs(title = title_text, x = NULL, y = NULL)
 
 
+#facet if necessary
+
+facet_quo <- enquo(facet_var)
+
+if (!rlang::quo_is_null(facet_quo)) {
+
+  facet <- ggplot2::facet_wrap(vars(!!facet_quo))
+  p <- p + facet
+}
+
+
 
 if (!is.null(scale_type)) {
 
@@ -89,19 +100,6 @@ if (scale_type == 'datetime') {
 }
 
 }
+p
 
-# facet if necessary
-
-if (!is.null(facet_var)) {
-  #facet <- facet_wrap(vars(.data[[facet_var]]))
-  facet <- ggplot2::facet_wrap(vars(!!facet_var))
-  p <- p + facet
-
-  return(p)
-}
-
-
-# else remove pesky facet label
-p <- p + ggplot2::theme(strip.text.x = ggplot2::element_blank())
-return(p)
 }

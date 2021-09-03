@@ -25,7 +25,8 @@ test_that("plots have known output", {
 
   controls <- cusum_control(test_vec)
 
-p <- cusum_control_plot(controls, xvar = obs, title_text = "sample CuSum with controls shows out of control since 7th observation")
+p <- cusum_control_plot(controls, xvar = obs,
+                        title_text = "CuSum shows out of control since 7th observation")
 
 p_output <- p$data
 p_output$ucl <- round(p_output$ucl,3)
@@ -60,6 +61,112 @@ test_that("facets work", {
 
   expect_equal(p$facet$vars(),".id")
 
+})
 
+
+test_that("date facets work", {
+  library(data.table)
+  library(cusumcharter)
+
+  testdata <- data.frame(
+    stringsAsFactors = FALSE,
+    N = c(1L,2L,1L,3L,1L,1L,1L,1L,1L,
+          2L,1L,1L,1L,10L,7L,2L,3L,5L),
+    metric = c("metric1","metric1","metric1","metric1","metric1",
+               "metric1","metric1","metric1","metric1","metric2",
+               "metric2","metric2","metric2","metric2","metric2",
+               "metric2","metric2","metric2"))
+
+  testlist <- split(testdata$N,testdata$metric)
+
+  testres <- lapply(testlist, cusumcharter::cusum_control)
+
+  testres <- data.table::rbindlist(testres,fill = TRUE, idcol = TRUE)
+
+  testres[, datecol := c("2021-01-01","2021-01-02", "2021-01-03",
+                         "2021-01-04" ,"2021-01-05", "2021-01-06",
+                         "2021-01-07", "2021-01-08", "2021-01-09"), by = .id]
+
+  testres[,datecol := as.Date(datecol)]
+
+  p2 <- cusum_control_plot(testres, xvar = datecol,
+                           facet_var = .id,
+                           title_text = " faceted plots with date axis",
+                           scale_type = "date",
+                           datebreaks = '2 days')
+
+
+
+  expect_equal(p2$data$datecol,testres$datecol)
+
+})
+
+
+
+test_that("datetime facets work", {
+  library(data.table)
+  library(cusumcharter)
+
+  testdata <- data.frame(
+    stringsAsFactors = FALSE,
+    N = c(1L,2L,1L,3L,1L,1L,1L,1L,1L,
+          2L,1L,1L,1L,10L,7L,2L,3L,5L),
+    metric = c("metric1","metric1","metric1","metric1","metric1",
+               "metric1","metric1","metric1","metric1","metric2",
+               "metric2","metric2","metric2","metric2","metric2",
+               "metric2","metric2","metric2"))
+
+  testlist <- split(testdata$N,testdata$metric)
+
+  testres <- lapply(testlist, cusumcharter::cusum_control)
+
+  testres <- data.table::rbindlist(testres,fill = TRUE, idcol = TRUE)
+
+
+  testres[, datetimecol := c("2021-09-03 22:19:46", "2021-09-03 22:20:46","2021-09-03 22:21:46", "2021-09-03 22:22:46", "2021-09-03 22:23:46", "2021-09-03 22:24:46" , "2021-09-03 22:25:46", "2021-09-03 22:26:46", "2021-09-03 22:27:46"), by = .id]
+
+  testres[,datetimecol := as.POSIXct(datetimecol)]
+
+  p3 <- cusum_control_plot(testres, xvar = datetimecol,
+                           facet_var = .id,
+                           title_text = " faceted plots with datetime axis",
+                           scale_type = "datetime",
+                           datebreaks = '2 mins')
+
+
+
+  expect_equal(p3$data$datetimecol,testres$datetimecol)
+
+})
+
+
+
+
+test_that("above ucl points plot", {
+  library(data.table)
+  library(cusumcharter)
+
+  testdata <- data.frame(
+    stringsAsFactors = FALSE,
+    N = c(1L,2L,1L,3L,1L,1L,1L,1L,1L,
+          2L,1L,1L,1L,10L,7L,9L,11L,9L),
+    metric = c("metric1","metric1","metric1","metric1","metric1",
+               "metric1","metric1","metric1","metric1","metric2",
+               "metric2","metric2","metric2","metric2","metric2",
+               "metric2","metric2","metric2"))
+
+  testlist <- split(testdata$N,testdata$metric)
+
+  testres <- lapply(testlist, cusumcharter::cusum_control)
+
+  testres <- data.table::rbindlist(testres,fill = TRUE, idcol = TRUE)
+
+  p4 <- cusum_control_plot(testres, xvar = obs, facet_var = .id, title_text = " faceted CuSum Control plots")
+
+  expect_equal(dim(p4$layers[[4]]$data)[1],2)
+
+  mylist <- list(colour = "#c9052c")
+
+  expect_equal(p4$layers[[4]]$aes_params,mylist)
 
 })
