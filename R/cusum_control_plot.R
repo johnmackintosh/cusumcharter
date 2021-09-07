@@ -79,7 +79,7 @@ facet_quo <- enquo(facet_var)
 
 if (!rlang::quo_is_null(facet_quo)) {
 
-  facet <- ggplot2::facet_wrap(vars(!!facet_quo))
+  facet <- ggplot2::facet_wrap(vars(!!facet_quo), scales = facet_scales)
   p <- p + facet
 }
 
