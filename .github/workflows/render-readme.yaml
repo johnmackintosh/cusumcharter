@@ -18,6 +18,8 @@ jobs:
           remotes::install_local(".")
           remotes::install_cran("rmarkdown")
           remotes::install_cran("ggplot2")
+          remotes::install_cran("dplyr")
+          remotes::install_cran("tibble")
           remotes::install_cran("scales")
           remotes::install_cran("glue")
           remotes::install_cran("data.table")
