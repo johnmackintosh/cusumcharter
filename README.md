@@ -13,8 +13,10 @@ coverage](https://codecov.io/gh/johnmackintosh/cusumcharter/branch/master/graph/
 [![Render
 README](https://github.com/johnmackintosh/cusumcharter/actions/workflows/render-readme.yaml/badge.svg)](https://github.com/johnmackintosh/cusumcharter/actions/workflows/render-readme.yaml)
 
-[![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![Project Status: Active – The project has reached a stable, usable
+state and is being actively
+developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+
 [![CRAN
 status](https://www.r-pkg.org/badges/version/cusumcharter)](https://CRAN.R-project.org/package=cusumcharter)
 <!-- badges: end -->
@@ -158,6 +160,7 @@ library(dplyr)
 #> 
 #>     intersect, setdiff, setequal, union
 library(tibble)
+#> Warning: package 'tibble' was built under R version 4.1.1
 library(ggplot2)
 library(cusumcharter)
 
