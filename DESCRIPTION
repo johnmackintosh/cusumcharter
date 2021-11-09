@@ -18,7 +18,8 @@ Suggests:
     testthat (>= 3.0.0),
     tibble
 Config/testthat/edition: 3
-URL: https://github.com/johnmackintosh/cusumcharter
+URL: https://github.com/johnmackintosh/cusumcharter,
+    https://johnmackintosh.github.io/cusumcharter
 BugReports: https://github.com/johnmackintosh/cusumcharter/issues
 Imports: 
     rlang,
