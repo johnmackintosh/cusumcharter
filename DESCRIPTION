@@ -6,7 +6,9 @@ Authors@R:
            family = "MacKintosh",
            role = c("aut", "cre"),
            email = "johnmackintosh.jm@gmail.com")
-Description: Functions to make creating CuSum charts easier, including faceted plots.
+Description: create cusum statistics from a vector or dataframe.
+    Also create single or faceted CuSum control charts, with or without control limits.
+    Accepts vector, dataframe, tibble or data.table inputs.
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
