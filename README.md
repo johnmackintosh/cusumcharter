@@ -24,7 +24,12 @@ status](https://www.r-pkg.org/badges/version/cusumcharter)](https://CRAN.R-proje
 The goal of cusumcharter is to create both simple CuSum charts, with and
 without control limits from a vector, or to create multiple CuSum
 charts, with or without control limits, from a grouped dataframe, tibble
-or data.table
+or data.table.
+
+CuSum charts detect small changes over time, and will alert quicker than
+a Statistical Process Control chart. They are an excellent alternative
+to run and control charts, particularly where data is scarce,
+infrequent, or expensive to obtain.
 
 ## Installation
 
@@ -160,6 +165,7 @@ library(dplyr)
 #> 
 #>     intersect, setdiff, setequal, union
 library(tibble)
+#> Warning: package 'tibble' was built under R version 4.1.1
 library(ggplot2)
 library(cusumcharter)
 

@@ -30,7 +30,10 @@ knitr::opts_chunk$set(
 [![CRAN status](https://www.r-pkg.org/badges/version/cusumcharter)](https://CRAN.R-project.org/package=cusumcharter)
 <!-- badges: end -->
 
-The goal of cusumcharter is to create both simple CuSum charts, with and without control limits from a vector, or to create multiple CuSum charts, with or without control limits, from a grouped dataframe, tibble or data.table
+The goal of cusumcharter is to create both simple CuSum charts, with and without control limits from a vector, or to create multiple CuSum charts, with or without control limits, from a grouped dataframe, tibble or data.table.
+
+
+CuSum charts detect small changes over time, and will alert quicker than a Statistical Process Control chart. They are an excellent alternative to run and control charts, particularly where data is scarce, infrequent, or expensive to obtain.  
 
 ## Installation
 
