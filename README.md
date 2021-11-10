@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# cusumcharter
+# cusumcharter <img src="man/figures/logo.png" width="160px" align="right" />
 
 <!-- badges: start -->
 
@@ -160,6 +160,7 @@ library(dplyr)
 #> 
 #>     intersect, setdiff, setequal, union
 library(tibble)
+#> Warning: package 'tibble' was built under R version 4.1.1
 library(ggplot2)
 library(cusumcharter)
 
