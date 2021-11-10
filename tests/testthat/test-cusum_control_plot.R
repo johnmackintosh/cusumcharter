@@ -161,12 +161,49 @@ test_that("above ucl points plot", {
 
   testres <- data.table::rbindlist(testres,fill = TRUE, idcol = TRUE)
 
-  p4 <- cusum_control_plot(testres, xvar = obs, facet_var = .id, title_text = " faceted CuSum Control plots")
+  p4 <- cusum_control_plot(testres,
+                           xvar = obs,
+                           above = TRUE,
+                           facet_var = .id,
+                           title_text = " Faceted CuSum Control plots")
 
   expect_equal(dim(p4$layers[[4]]$data)[1],2)
 
   mylist <- list(colour = "#c9052c")
 
   expect_equal(p4$layers[[4]]$aes_params,mylist)
+
+})
+
+
+
+test_that("below ucl points plot", {
+  library(data.table)
+  library(cusumcharter)
+
+testdata <- data.frame(
+stringsAsFactors = FALSE,
+N = c(-15L,2L,-11L,3L,1L,1L,-11L,1L,1L,
+2L,1L,1L,1L,10L,7L,9L,11L,9L),
+metric = c("metric1","metric1","metric1","metric1","metric1",
+"metric1","metric1","metric1","metric1","metric2",
+"metric2","metric2","metric2","metric2","metric2",
+"metric2","metric2","metric2"))
+testlist <- split(testdata$N,testdata$metric)
+testres <- lapply(testlist, cusumcharter::cusum_control)
+testres <- data.table::rbindlist(testres,fill = TRUE, idcol = TRUE)
+
+p5 <- cusum_control_plot(testres,
+                         xvar = obs,
+                         above = TRUE,
+                         below = TRUE,
+                         facet_var = .id,
+                         title_text = " Faceted CuSum Control plots")
+
+expect_equal(dim(p5$layers[[4]]$data)[1],2)
+
+mylist <- list(colour = "#c9052c")
+
+expect_equal(p5$layers[[7]]$aes_params,mylist) #cneg out of bounds is 7th layer
 
 })
