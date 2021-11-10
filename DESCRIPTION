@@ -6,7 +6,7 @@ Authors@R:
            family = "MacKintosh",
            role = c("aut", "cre"),
            email = "johnmackintosh.jm@gmail.com")
-Description: create cusum statistics from a vector or dataframe.
+Description: Create CuSum (cumulative sum) statistics from a vector or dataframe.
     Also create single or faceted CuSum control charts, with or without control limits.
     Accepts vector, dataframe, tibble or data.table inputs.
 License: GPL (>= 3)
@@ -21,7 +21,7 @@ Suggests:
     tibble
 Config/testthat/edition: 3
 URL: https://github.com/johnmackintosh/cusumcharter,
-    https://johnmackintosh.github.io/cusumcharter
+    https://johnmackintosh.github.io/cusumcharter/
 BugReports: https://github.com/johnmackintosh/cusumcharter/issues
 Imports: 
     rlang,
