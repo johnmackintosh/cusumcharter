@@ -163,7 +163,6 @@ test_that("above ucl points plot", {
 
   p4 <- cusum_control_plot(testres,
                            xvar = obs,
-                           above = TRUE,
                            facet_var = .id,
                            title_text = " Faceted CuSum Control plots")
 
@@ -171,7 +170,7 @@ test_that("above ucl points plot", {
 
   mylist <- list(colour = "#c9052c")
 
-  expect_equal(p4$layers[[4]]$aes_params,mylist)
+  expect_equal(p4$layers[[4]]$aes_params,mylist) # layer 4 is above ucl
 
 })
 
@@ -195,8 +194,7 @@ testres <- data.table::rbindlist(testres,fill = TRUE, idcol = TRUE)
 
 p5 <- cusum_control_plot(testres,
                          xvar = obs,
-                         above = TRUE,
-                         below = TRUE,
+                         show_below = TRUE,
                          facet_var = .id,
                          title_text = " Faceted CuSum Control plots")
 

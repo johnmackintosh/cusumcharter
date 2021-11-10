@@ -160,6 +160,7 @@ library(dplyr)
 #> 
 #>     intersect, setdiff, setequal, union
 library(tibble)
+#> Warning: package 'tibble' was built under R version 4.1.1
 library(ggplot2)
 library(cusumcharter)
 
@@ -205,24 +206,22 @@ testdata <- tibble::tibble(
            "metric2","metric2","metric2","metric2","metric2",
            "metric2","metric2","metric2"))
 
-testres <- testdata %>% 
-  dplyr::group_by(metric) %>% 
-  dplyr::mutate(cusum_control(N)) %>% 
-  dplyr::ungroup()
-#> no target value supplied, so using the mean of x
-#> no target value supplied, so using the mean of x
-
 datecol <- as.Date(c("2021-01-01","2021-01-02", "2021-01-03", "2021-01-04" ,
              "2021-01-05", "2021-01-06","2021-01-07", "2021-01-08", 
              "2021-01-09"))
 
-testres <- testres %>% 
+testres <- testdata %>% 
+  dplyr::group_by(metric) %>% 
+  dplyr::mutate(cusum_control(N)) %>% 
+  dplyr::ungroup() %>% 
   dplyr::group_by(metric) %>% 
   dplyr::mutate(report_date = datecol) %>% 
-  ungroup
+  ungroup()
+#> no target value supplied, so using the mean of x
+#> no target value supplied, so using the mean of x
 
 p2 <- cusum_control_plot(testres, 
-                         xvar = report_date, 
+                         xvar = report_date,
                          facet_var = metric, 
                          title_text = "Faceted plots with date axis", 
                          scale_type = "date", 
@@ -235,3 +234,41 @@ p2
 ```
 
 ![](man/figures/README-faceted_chart2-1.png)<!-- -->
+
+``` r
+library(dplyr)
+library(ggplot2)
+library(cusumcharter)
+
+testdata <- tibble::tibble(
+N = c(-15L,2L,-11L,3L,1L,1L,-11L,1L,1L,
+2L,1L,1L,1L,10L,7L,9L,11L,9L),
+metric = c("metric1","metric1","metric1","metric1","metric1",
+"metric1","metric1","metric1","metric1","metric2",
+"metric2","metric2","metric2","metric2","metric2",
+"metric2","metric2","metric2"))
+
+datecol <- as.Date(c("2021-01-01","2021-01-02", "2021-01-03", "2021-01-04" ,
+             "2021-01-05", "2021-01-06","2021-01-07", "2021-01-08", 
+             "2021-01-09"))
+
+testres <- testdata %>% 
+  dplyr::group_by(metric) %>% 
+  dplyr::mutate(cusum_control(N)) %>% 
+  dplyr::ungroup() %>% 
+  dplyr::group_by(metric) %>% 
+  dplyr::mutate(report_date = datecol) %>% 
+  ungroup()
+#> no target value supplied, so using the mean of x
+#> no target value supplied, so using the mean of x
+
+
+p5 <- cusum_control_plot(testres,
+                         xvar = report_date,
+                         show_below = TRUE,
+                         facet_var = metric,
+                         title_text = "Highlights above and below control limits")
+p5
+```
+
+![](man/figures/README-highlightbelow-1.png)<!-- -->

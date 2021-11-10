@@ -7,8 +7,7 @@
 cusum_control_plot(
   df,
   xvar,
-  above = TRUE,
-  below = FALSE,
+  show_below = FALSE,
   pos_col = "#385581",
   centre_col = "black",
   neg_col = "#6dbac6",
@@ -26,9 +25,7 @@ cusum_control_plot(
 
 \item{xvar}{the variable on the x axis, typically an obervation number or date/time}
 
-\item{above}{whether to highlight points above the UCL, default is TRUE}
-
-\item{below}{whether to highlight points below the LCL, default is FALSE}
+\item{show_below}{whether to highlight points below the LCL, default is FALSE}
 
 \item{pos_col}{line and point colour for positive values}
 
