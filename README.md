@@ -160,6 +160,7 @@ library(dplyr)
 #> 
 #>     intersect, setdiff, setequal, union
 library(tibble)
+#> Warning: package 'tibble' was built under R version 4.1.1
 library(ggplot2)
 library(cusumcharter)
 
@@ -181,11 +182,11 @@ testres <- testdata %>%
 p <- cusum_control_plot(testres, 
                         xvar = obs, 
                         facet_var = metric, 
-                        title_text = "faceted CuSum Control plots")
+                        title_text = "Faceted CuSum Control plots")
 p
 ```
 
-<img src="man/figures/README-faceted_chart1-1.png" width="100%" />
+![](man/figures/README-faceted_chart1-1.png)<!-- -->
 
 ## Flexible x axis
 
@@ -224,7 +225,7 @@ testres <- testres %>%
 p2 <- cusum_control_plot(testres, 
                          xvar = report_date, 
                          facet_var = metric, 
-                         title_text = "faceted plots with date axis", 
+                         title_text = "Faceted plots with date axis", 
                          scale_type = "date", 
                          datebreaks = '4 days')
 
@@ -234,4 +235,4 @@ p2 <- p2 + ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 90,
 p2
 ```
 
-<img src="man/figures/README-faceted_chart2-1.png" width="100%" />
+![](man/figures/README-faceted_chart2-1.png)<!-- -->

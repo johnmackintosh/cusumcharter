@@ -9,7 +9,8 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   fig.path = "man/figures/README-",
-  out.width = "100%"
+  dpi = 300,
+  fig.width = 5
 )
 ```
 
@@ -119,7 +120,7 @@ testres <- testdata %>%
 p <- cusum_control_plot(testres, 
                         xvar = obs, 
                         facet_var = metric, 
-                        title_text = "faceted CuSum Control plots")
+                        title_text = "Faceted CuSum Control plots")
 p
 
 ```
@@ -158,7 +159,7 @@ testres <- testres %>%
 p2 <- cusum_control_plot(testres, 
                          xvar = report_date, 
                          facet_var = metric, 
-                         title_text = "faceted plots with date axis", 
+                         title_text = "Faceted plots with date axis", 
                          scale_type = "date", 
                          datebreaks = '4 days')
 
