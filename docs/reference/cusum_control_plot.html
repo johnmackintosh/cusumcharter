@@ -128,6 +128,11 @@
     <pre class="usage"><span class='fu'>cusum_control_plot</span><span class='op'>(</span>
   <span class='va'>df</span>,
   <span class='va'>xvar</span>,
+  show_below <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  pos_col <span class='op'>=</span> <span class='st'>"#385581"</span>,
+  centre_col <span class='op'>=</span> <span class='st'>"black"</span>,
+  neg_col <span class='op'>=</span> <span class='st'>"#6dbac6"</span>,
+  highlight_col <span class='op'>=</span> <span class='st'>"#c9052c"</span>,
   facet_var <span class='op'>=</span> <span class='cn'>NULL</span>,
   facet_scales <span class='op'>=</span> <span class='st'>"free_y"</span>,
   scale_type <span class='op'>=</span> <span class='cn'>NULL</span>,
@@ -146,6 +151,28 @@
     <tr>
       <th>xvar</th>
       <td><p>the variable on the x axis, typically an obervation number or date/time</p></td>
+    </tr>
+    <tr>
+      <th>show_below</th>
+      <td><p>whether to highlight points below the LCL, default is FALSE</p></td>
+    </tr>
+    <tr>
+      <th>pos_col</th>
+      <td><p>line and point colour for positive values</p></td>
+    </tr>
+    <tr>
+      <th>centre_col</th>
+      <td><p>line colour for centre line</p></td>
+    </tr>
+    <tr>
+      <th>neg_col</th>
+      <td><p>line nd point colour for negative values</p></td>
+    </tr>
+    <tr>
+      <th>highlight_col</th>
+      <td><ul>
+<li><p>point colour for values outside UCL and (optionally) LCL</p></li>
+</ul></td>
     </tr>
     <tr>
       <th>facet_var</th>
