@@ -1,13 +1,13 @@
 Package: cusumcharter
-Title: Easier CuSum Control Charts 
+Title: Easier CUSUM Control Charts 
 Version: 0.0.0.9000
 Authors@R: 
     person(given = "John",
            family = "MacKintosh",
            role = c("aut", "cre"),
            email = "johnmackintosh.jm@gmail.com")
-Description: Create CuSum (cumulative sum) statistics from a vector or dataframe.
-    Also create single or faceted CuSum control charts, with or without control limits.
+Description: Create CUSUM (cumulative sum) statistics from a vector or dataframe.
+    Also create single or faceted CUSUM control charts, with or without control limits.
     Accepts vector, dataframe, tibble or data.table inputs.
 License: GPL (>= 3)
 Encoding: UTF-8

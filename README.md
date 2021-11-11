@@ -21,12 +21,12 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 status](https://www.r-pkg.org/badges/version/cusumcharter)](https://CRAN.R-project.org/package=cusumcharter)
 <!-- badges: end -->
 
-The goal of cusumcharter is to create both simple CuSum charts, with and
-without control limits from a vector, or to create multiple CuSum
+The goal of cusumcharter is to create both simple CUSUM charts, with and
+without control limits from a vector, or to create multiple CUSUM
 charts, with or without control limits, from a grouped dataframe, tibble
 or data.table.
 
-CuSum charts detect small changes over time, and will alert quicker than
+CUSUM charts detect small changes over time, and will alert quicker than
 a Statistical Process Control chart. They are an excellent alternative
 to run and control charts, particularly where data is scarce,
 infrequent, or expensive to obtain.
@@ -40,24 +40,24 @@ Install the development version from [GitHub](https://github.com/) with:
 remotes::install_github("johnmackintosh/cusumcharter")
 ```
 
-## A Simple CuSum calculation
+## A Simple CUSUM calculation
 
-This returns the CuSum statistics for a single vector, centred on a
+This returns the CUSUM statistics for a single vector, centred on a
 supplied target value:
 
 ``` r
 library(cusumcharter)
 test_vec <- c(0.175, 0.152, 0.15, 0.207, 0.136, 0.212, 0.166)
 
-CuSum_res <- cusum_single(test_vec, target = 0.16)
-CuSum_res
+CUSUM_res <- cusum_single(test_vec, target = 0.16)
+CUSUM_res
 #> [1] 0.175 0.167 0.157 0.204 0.180 0.232 0.238
 ```
 
 ## Expanded outputs with cusum\_single\_df
 
 This function takes a single vector as input and returns a data.frame
-with additional information used to calculate the CuSum statistic
+with additional information used to calculate the CUSUM statistic
 
 ``` r
 test_vec2 <- c(0.175, 0.152, 0.15, 0.207, 0.136, 0.212, 0.166)
@@ -92,10 +92,10 @@ cusum_single_df(test_vec3)
 #> 11  5      4  1      0            4
 ```
 
-## CuSum control limits
+## CUSUM control limits
 
 Two additional functions allow you to calculate control limits from a
-single vector and plot a CuSum chart with control limits.
+single vector and plot a CUSUM chart with control limits.
 
 ``` r
 test_vec3 <- c(1,1,2,3,5,7,11,7,5,7,8,9,5)
@@ -131,7 +131,7 @@ controls
 #> 13 7.092199 -7.092199      0  13
 ```
 
-## CuSum Control Chart
+## CUSUM Control Chart
 
 ``` r
 test_vec3 <- c(1,1,2,3,5,7,11,7,5,7,8,9,5)
@@ -139,12 +139,12 @@ controls <- cusum_control(test_vec3, target = 4)
 
 cusum_control_plot(controls, 
                    xvar = obs, 
-                   title_text = "CuSum out of control since 7th observation")
+                   title_text = "CUSUM out of control since 7th observation")
 ```
 
 <img src="man/figures/README-single-control_chart-1.png" width="100%" />
 
-## Multiple CuSum Control Charts
+## Multiple CUSUM Control Charts
 
 Using base R to split and apply our dataset, and `data.table`’s
 `rbindlist()` to combine the results into a data.frame / data.table for
@@ -186,7 +186,7 @@ testres <- testdata %>%
 p <- cusum_control_plot(testres, 
                         xvar = obs, 
                         facet_var = metric, 
-                        title_text = "Faceted CuSum Control plots")
+                        title_text = "Faceted CUSUM Control plots")
 p
 ```
 

@@ -26,7 +26,7 @@ test_that("plots have known output", {
   controls <- cusum_control(test_vec)
 
 p <- cusum_control_plot(controls, xvar = obs,
-                        title_text = "CuSum shows out of control since 7th observation")
+                        title_text = "CUSUM shows out of control since 7th observation")
 
 p_output <- p$data
 p_output$ucl <- round(p_output$ucl,3)
@@ -57,7 +57,7 @@ test_that("facets work", {
 
   testres <- data.table::rbindlist(testres,fill = TRUE, idcol = TRUE)
 
-  p <- cusum_control_plot(testres, xvar = obs, facet_var = .id, title_text = " faceted CuSum Control plots")
+  p <- cusum_control_plot(testres, xvar = obs, facet_var = .id, title_text = " faceted CUSUM Control plots")
 
   expect_equal(p$facet$vars(),".id")
 
@@ -164,7 +164,7 @@ test_that("above ucl points plot", {
   p4 <- cusum_control_plot(testres,
                            xvar = obs,
                            facet_var = .id,
-                           title_text = " Faceted CuSum Control plots")
+                           title_text = " Faceted CUSUM Control plots")
 
   expect_equal(dim(p4$layers[[4]]$data)[1],2)
 
@@ -196,7 +196,7 @@ p5 <- cusum_control_plot(testres,
                          xvar = obs,
                          show_below = TRUE,
                          facet_var = .id,
-                         title_text = " Faceted CuSum Control plots")
+                         title_text = " Faceted CUSUM Control plots")
 
 expect_equal(dim(p5$layers[[4]]$data)[1],2)
 
