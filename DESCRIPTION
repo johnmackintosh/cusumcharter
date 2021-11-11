@@ -17,6 +17,8 @@ RoxygenNote: 7.1.2
 Suggests: 
     covr,
     dplyr,
+    knitr,
+    rmarkdown,
     testthat (>= 3.0.0),
     tibble
 Config/testthat/edition: 3
@@ -27,3 +29,4 @@ Imports:
     rlang,
     ggplot2,
     data.table
+VignetteBuilder: knitr
