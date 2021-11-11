@@ -165,6 +165,7 @@ library(dplyr)
 #> 
 #>     intersect, setdiff, setequal, union
 library(tibble)
+#> Warning: package 'tibble' was built under R version 4.1.1
 library(ggplot2)
 library(cusumcharter)
 
@@ -239,6 +240,12 @@ p2
 
 ![](man/figures/README-faceted_chart2-1.png)<!-- -->
 
+## Highlight above and below control limits
+
+Points outside the Upper Control Limit are always highlighted. Use the
+`show_below` option to enable highlighting points below the Lower
+Control Limit
+
 ``` r
 library(dplyr)
 library(ggplot2)
@@ -253,15 +260,15 @@ metric = c("metric1","metric1","metric1","metric1","metric1",
 "metric2","metric2","metric2"))
 
 datecol <- as.Date(c("2021-01-01","2021-01-02", "2021-01-03", "2021-01-04" ,
-             "2021-01-05", "2021-01-06","2021-01-07", "2021-01-08", 
+             "2021-01-05", "2021-01-06","2021-01-07", "2021-01-08",
              "2021-01-09"))
 
-testres <- testdata %>% 
-  dplyr::group_by(metric) %>% 
-  dplyr::mutate(cusum_control(N)) %>% 
-  dplyr::ungroup() %>% 
-  dplyr::group_by(metric) %>% 
-  dplyr::mutate(report_date = datecol) %>% 
+testres <- testdata %>%
+  dplyr::group_by(metric) %>%
+  dplyr::mutate(cusum_control(N)) %>%
+  dplyr::ungroup() %>%
+  dplyr::group_by(metric) %>%
+  dplyr::mutate(report_date = datecol) %>%
   ungroup()
 #> no target value supplied, so using the mean of x
 #> no target value supplied, so using the mean of x
