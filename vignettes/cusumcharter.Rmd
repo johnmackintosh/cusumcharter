@@ -14,7 +14,8 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   fig.path = "man/figures/",
-  dpi = 300
+  dpi = 300,
+  fig.width = 5
 )
 ```
 
@@ -28,7 +29,7 @@ Basic CUSUM statistics are fairly straightforward to construct in a spreadsheet,
 
 The goal of this package is to allow you to pass simple vectors in, and receive data back that contains all the information you need to create faceted CUSUM control charts - (there is also a function that takes care of this for you).
 
-## A journey throught package functions
+## A journey through the package functions
 
 ```{r}
 test_vec <- c(1,1,2,3,5,7,11,7,5,7,8,9,5)

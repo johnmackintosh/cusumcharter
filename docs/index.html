@@ -53,6 +53,9 @@
   </a>
 </li>
 <li>
+  <a href="articles/cusumcharter.html">Get started</a>
+</li>
+<li>
   <a href="reference/index.html">Reference</a>
 </li>
 <li>
@@ -90,6 +93,7 @@
 <p><a href="https://CRAN.R-project.org/package=cusumcharter"><img src="https://www.r-pkg.org/badges/version/cusumcharter" alt="CRAN status"></a> <!-- badges: end --></p>
 <p>The goal of cusumcharter is to create both simple CUSUM charts, with and without control limits from a vector, or to create multiple CUSUM charts, with or without control limits, from a grouped dataframe, tibble or data.table.</p>
 <p>CUSUM charts detect small changes over time, and will alert quicker than a Statistical Process Control chart. They are an excellent alternative to run and control charts, particularly where data is scarce, infrequent, or expensive to obtain.</p>
+<p>They monitor the difference between each data point, relative to a target value, which is often the mean of all the currently available data points. Using these variances and targets, control limits are calculated. Any points outside these limits are an indication that the process is out of control.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
@@ -106,8 +110,8 @@
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/johnmackintosh/cusumcharter">cusumcharter</a></span><span class="op">)</span>
 <span class="va">test_vec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.175</span>, <span class="fl">0.152</span>, <span class="fl">0.15</span>, <span class="fl">0.207</span>, <span class="fl">0.136</span>, <span class="fl">0.212</span>, <span class="fl">0.166</span><span class="op">)</span>
 
-<span class="va">CUSUM_res</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/cusum_single.html">cusum_single</a></span><span class="op">(</span><span class="va">test_vec</span>, target <span class="op">=</span> <span class="fl">0.16</span><span class="op">)</span>
-<span class="va">CUSUM_res</span>
+<span class="va">cusum_res</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/cusum_single.html">cusum_single</a></span><span class="op">(</span><span class="va">test_vec</span>, target <span class="op">=</span> <span class="fl">0.16</span><span class="op">)</span>
+<span class="va">cusum_res</span>
 <span class="co">#&gt; [1] 0.175 0.167 0.157 0.204 0.180 0.232 0.238</span></code></pre></div>
 </div>
 <div id="expanded-outputs-with-cusum_single_df" class="section level2">
@@ -125,7 +129,7 @@
 <span class="co">#&gt; 5 0.136   0.16 -0.024  0.020        0.180</span>
 <span class="co">#&gt; 6 0.212   0.16  0.052  0.072        0.232</span>
 <span class="co">#&gt; 7 0.166   0.16  0.006  0.078        0.238</span></code></pre></div>
-<p>Here we don’t supply a target, so one is calculated along with the other statistics</p>
+<p>Here we don’t supply a target, so the mean is used</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">test_vec3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">11</span>,<span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">7</span>,<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">5</span><span class="op">)</span>
 <span class="fu"><a href="reference/cusum_single_df.html">cusum_single_df</a></span><span class="op">(</span><span class="va">test_vec3</span><span class="op">)</span>
@@ -145,7 +149,7 @@
 <div id="cusum-control-limits" class="section level2">
 <h2 class="hasAnchor">
 <a href="#cusum-control-limits" class="anchor"></a>CUSUM control limits</h2>
-<p>Two additional functions allow you to calculate control limits from a single vector and plot a CUSUM chart with control limits.</p>
+<p>Two additional functions allow you to calculate control limits from a single vector and plot a CUSUM chart with control limits. As before, the mean is used to determine the target if none is provided. Alternate functions are available if you wish to use the median instead.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">test_vec3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">7</span>,<span class="fl">11</span>,<span class="fl">7</span>,<span class="fl">5</span>,<span class="fl">7</span>,<span class="fl">8</span>,<span class="fl">9</span>,<span class="fl">5</span><span class="op">)</span>
 <span class="va">controls</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/cusum_control.html">cusum_control</a></span><span class="op">(</span><span class="va">test_vec3</span>, target <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>
@@ -178,6 +182,7 @@
 <span class="co">#&gt; 11 7.092199 -7.092199      0  11</span>
 <span class="co">#&gt; 12 7.092199 -7.092199      0  12</span>
 <span class="co">#&gt; 13 7.092199 -7.092199      0  13</span></code></pre></div>
+<p>Also see the <code>cusum_control_median</code> function</p>
 </div>
 <div id="cusum-control-chart" class="section level2">
 <h2 class="hasAnchor">
@@ -189,13 +194,11 @@
 <span class="fu"><a href="reference/cusum_control_plot.html">cusum_control_plot</a></span><span class="op">(</span><span class="va">controls</span>, 
                    xvar <span class="op">=</span> <span class="va">obs</span>, 
                    title_text <span class="op">=</span> <span class="st">"CUSUM out of control since 7th observation"</span><span class="op">)</span></code></pre></div>
-<p><img src="reference/figures/README-single-control_chart-1.png" width="100%"></p>
+<p><img src="reference/figures/README-single-control_chart-1.png"><!-- --></p>
 </div>
 <div id="multiple-cusum-control-charts" class="section level2">
 <h2 class="hasAnchor">
 <a href="#multiple-cusum-control-charts" class="anchor"></a>Multiple CUSUM Control Charts</h2>
-<p>Using base R to split and apply our dataset, and <code>data.table</code>’s <code>rbindlist()</code> to combine the results into a data.frame / data.table for plotting.</p>
-<p>The x axis variable is the obervation number (<code>obs</code>) and the facet variable is <code>.id</code>. Both these are generated by the <code>cusum_control</code> function.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
 <span class="co">#&gt; </span>
@@ -207,6 +210,7 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt;     intersect, setdiff, setequal, union</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tibble.tidyverse.org/">tibble</a></span><span class="op">)</span>
+<span class="co">#&gt; Warning: package 'tibble' was built under R version 4.1.1</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/johnmackintosh/cusumcharter">cusumcharter</a></span><span class="op">)</span>
 

@@ -36,7 +36,8 @@ The goal of cusumcharter is to create both simple CUSUM charts, with and without
 CUSUM charts detect small changes over time, and will alert quicker than a Statistical Process Control chart. They are an excellent alternative to run and control charts, particularly where data is scarce, infrequent, or expensive to obtain.  
 
 They monitor the difference between each data point, relative to a target value, which is often the mean of all the currently available data points. Using these variances and targets, control limits are calculated.
-Any points outside these limits are an indication that the process is out of control. 
+Any points outside these limits are an indication that the process is out of control.  
+
 
 ## Installation
 

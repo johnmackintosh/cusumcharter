@@ -1,8 +1,9 @@
 pandoc: 2.11.4
 pkgdown: 1.6.1
 pkgdown_sha: ~
-articles: {}
-last_built: 2021-11-11T21:12Z
+articles:
+  cusumcharter: cusumcharter.html
+last_built: 2021-11-11T23:16Z
 urls:
   reference: https://johnmackintosh.github.io/cusumcharter//reference
   article: https://johnmackintosh.github.io/cusumcharter//articles
