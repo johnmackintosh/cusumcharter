@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • cusumcharter</title>
+<title>cusum_single_median — cusum_single_median • cusumcharter</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,7 +46,8 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="cusum_single_median — cusum_single_median" />
+<meta property="og:description" content="cusum_single_median" />
 <meta property="og:image" content="https://johnmackintosh.github.io/cusumcharter/logo.png" />
 
 
@@ -66,7 +67,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -116,78 +117,45 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>cusum_single_median</h1>
+    <small class="dont-index">Source: <a href='https://github.com/johnmackintosh/cusumcharter/blob/master/R/cusum_single_median.R'><code>R/cusum_single_median.R</code></a></small>
+    <div class="hidden name"><code>cusum_single_median.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>cusum_single_median</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>cusum_single_median</span><span class='op'>(</span><span class='va'>x</span>, target <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="cusum_control.html">cusum_control()</a></code> </p>
-        </td>
-        <td><p>cusum_control</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="cusum_control_median.html">cusum_control_median()</a></code> </p>
-        </td>
-        <td><p>cusum_control_median</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="cusum_control_plot.html">cusum_control_plot()</a></code> </p>
-        </td>
-        <td><p>cusum_control_plot</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="cusum_single.html">cusum_single()</a></code> </p>
-        </td>
-        <td><p>cusum_single</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="cusum_single_df.html">cusum_single_df()</a></code> </p>
-        </td>
-        <td><p>cusum_single_df</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="cusum_single_median.html">cusum_single_median()</a></code> </p>
-        </td>
-        <td><p>cusum_single_median</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="cusum_single_median_df.html">cusum_single_median_df()</a></code> </p>
-        </td>
-        <td><p>cusum_single_median_df</p></td>
-      </tr>
-    </tbody>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>x</th>
+      <td><p>a numeric vector from which to calculate the cumulative sum statistics</p></td>
+    </tr>
+    <tr>
+      <th>target</th>
+      <td><p>value to compare each element of x to. If not provided, the median value of
+x will be calculated and used as a target value</p></td>
+    </tr>
     </table>
-  </div>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>a vector of the cumulative sum statistic, centred on the target value</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><span class='r-in'></span>
+<span class='r-in'><span class='va'>test_vec</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.175</span>, <span class='fl'>0.152</span>, <span class='fl'>0.15</span>, <span class='fl'>0.207</span>, <span class='fl'>0.136</span>, <span class='fl'>0.212</span>, <span class='fl'>0.166</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'>cusum_single_median</span><span class='op'>(</span><span class='va'>test_vec</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 0.175 0.161 0.145 0.186 0.156 0.202 0.202</span>
+<span class='r-in'></span>
+</pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>

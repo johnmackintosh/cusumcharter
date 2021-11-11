@@ -7,6 +7,9 @@
     <loc>https://johnmackintosh.github.io/cusumcharter//reference/cusum_control.html</loc>
   </url>
   <url>
+    <loc>https://johnmackintosh.github.io/cusumcharter//reference/cusum_control_median.html</loc>
+  </url>
+  <url>
     <loc>https://johnmackintosh.github.io/cusumcharter//reference/cusum_control_plot.html</loc>
   </url>
   <url>
@@ -14,5 +17,11 @@
   </url>
   <url>
     <loc>https://johnmackintosh.github.io/cusumcharter//reference/cusum_single_df.html</loc>
+  </url>
+  <url>
+    <loc>https://johnmackintosh.github.io/cusumcharter//reference/cusum_single_median.html</loc>
+  </url>
+  <url>
+    <loc>https://johnmackintosh.github.io/cusumcharter//reference/cusum_single_median_df.html</loc>
   </url>
 </urlset>
