@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>cusum_control_median — cusum_control_median • cusumcharter</title>
+<title>Articles • cusumcharter</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,7 @@
 
 
 
-<meta property="og:title" content="cusum_control_median — cusum_control_median" />
-<meta property="og:description" content="cusum_control_median" />
+<meta property="og:title" content="Articles" />
 <meta property="og:image" content="https://johnmackintosh.github.io/cusumcharter/logo.png" />
 
 
@@ -67,7 +66,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-topic">
+    <div class="container template-article-index">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -122,72 +121,18 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>cusum_control_median</h1>
-    <small class="dont-index">Source: <a href='https://github.com/johnmackintosh/cusumcharter/blob/master/R/cusum_control_median.R'><code>R/cusum_control_median.R</code></a></small>
-    <div class="hidden name"><code>cusum_control_median.Rd</code></div>
+      <h1>Articles</h1>
     </div>
 
-    <div class="ref-description">
-    <p>cusum_control_median</p>
+    <div class="section ">
+      <h3>All vignettes</h3>
+      <p class="section-desc"></p>
+
+      <dl>
+        <dt><a href="cusumcharter.html">cusumcharter</a></dt>
+        <dd></dt>
+      </dl>
     </div>
-
-    <pre class="usage"><span class='fu'>cusum_control_median</span><span class='op'>(</span>
-  <span class='va'>x</span>,
-  target <span class='op'>=</span> <span class='cn'>NULL</span>,
-  std_dev <span class='op'>=</span> <span class='cn'>NULL</span>,
-  desired_shift <span class='op'>=</span> <span class='fl'>1</span>,
-  k <span class='op'>=</span> <span class='fl'>0.5</span>,
-  h <span class='op'>=</span> <span class='fl'>4</span>
-<span class='op'>)</span></pre>
-
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>x</th>
-      <td><p>input vector</p></td>
-    </tr>
-    <tr>
-      <th>target</th>
-      <td><p>target value for comparison, the median of x will be used if missing</p></td>
-    </tr>
-    <tr>
-      <th>std_dev</th>
-      <td><p>Defaults to the screened moving range of x.
-A known or desired value for standard deviation can be supplied instead.</p></td>
-    </tr>
-    <tr>
-      <th>desired_shift</th>
-      <td><p>how many standard deviations do you want to detect?
-This value is typically between  0.5 to 1. Defaults to 1.</p></td>
-    </tr>
-    <tr>
-      <th>k</th>
-      <td><p>allowable slack - defaults to half the standard deviation multiplied by desired shift</p></td>
-    </tr>
-    <tr>
-      <th>h</th>
-      <td><p>action limits -  usually between 4 and 5, defaults to 4.
-The standard deviation is multiplied by this value to determine the upper and lower limits on the chart</p></td>
-    </tr>
-    </table>
-
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>data.frame showing original inputs and calculated control limits</p>
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='r-in'><span class='va'>test_vec3</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>2</span>,<span class='fl'>3</span>,<span class='fl'>5</span>,<span class='fl'>7</span>,<span class='fl'>11</span>,<span class='fl'>7</span>,<span class='fl'>5</span>,<span class='fl'>7</span>,<span class='fl'>8</span>,<span class='fl'>9</span>,<span class='fl'>5</span><span class='op'>)</span></span>
-<span class='r-in'><span class='va'>controls</span> <span class='op'>&lt;-</span> <span class='fu'>cusum_control_median</span><span class='op'>(</span><span class='va'>test_vec3</span>, target <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span></span>
-<span class='r-in'><span class='va'>controls_median</span> <span class='op'>&lt;-</span> <span class='fu'>cusum_control_median</span><span class='op'>(</span><span class='va'>test_vec3</span><span class='op'>)</span></span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span> no target value supplied, so using the median of x</span>
-<span class='r-in'></span>
-</pre>
-  </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-    <nav id="toc" data-toggle="toc" class="sticky-top">
-      <h2 data-toc-skip>Contents</h2>
-    </nav>
   </div>
 </div>
 
