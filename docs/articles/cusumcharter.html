@@ -93,7 +93,8 @@
     
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/johnmackintosh/cusumcharter">cusumcharter</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/johnmackintosh/cusumcharter">cusumcharter</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></code></pre></div>
 <div id="rationale" class="section level2">
 <h2 class="hasAnchor">
 <a href="#rationale" class="anchor"></a>Rationale</h2>
@@ -111,21 +112,24 @@
 <p><em>Or is it?</em></p>
 <p>Let’s find out..</p>
 </div>
-<div id="cusum_single_df" class="section level2">
+<div id="cusum_single" class="section level2">
 <h2 class="hasAnchor">
-<a href="#cusum_single_df" class="anchor"></a>cusum_single_df</h2>
+<a href="#cusum_single" class="anchor"></a>cusum_single</h2>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">test_vec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">7</span>,<span class="fl">11</span>,<span class="fl">7</span>,<span class="fl">5</span>,<span class="fl">7</span>,<span class="fl">8</span>,<span class="fl">9</span>,<span class="fl">5</span><span class="op">)</span>
 <span class="va">variances</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cusum_single.html">cusum_single</a></span><span class="op">(</span><span class="va">test_vec</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">variances</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="va">variances</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">13</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/qplot.html">qplot</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">variances</span><span class="op">)</span>
+<span class="va">p</span> <span class="op">&lt;-</span> <span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_hline</a></span><span class="op">(</span>yintercept <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></code></pre></div>
 <p><img src="man/figures/baseplot-1.png" width="1500"></p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">p</span></code></pre></div>
+<p><img src="man/figures/baseplot-2.png" width="1500"></p>
 <p>This bare bones plot tells us quite a lot. Our measure of interest started off with small variances, resulting in points below the centre line at 0, but the variances increased, the points crossed over the centre line.</p>
 </div>
-<div id="cusum_single_df-1" class="section level2">
+<div id="cusum_single_df" class="section level2">
 <h2 class="hasAnchor">
-<a href="#cusum_single_df-1" class="anchor"></a>cusum_single_df</h2>
+<a href="#cusum_single_df" class="anchor"></a>cusum_single_df</h2>
 <p>We input the same vector - this time using the <code>cusum_single_df</code> function. This returns :</p>
 <ul>
 <li>our original vector</li>
@@ -134,7 +138,7 @@
 <li>the cumulative sum of these variances</li>
 <li>the cumulative sum of these variances, centred on the target value ( by adding the target to the cumulative sum, i.e. adding <code>cusum_target</code> to <code>cusumx</code>)</li>
 </ul>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">variance_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cusum_single_df.html">cusum_single_df</a></span><span class="op">(</span><span class="va">test_vec</span><span class="op">)</span>
 <span class="va">variance_df</span>
 <span class="co">#&gt;     x   target         si        cusumx cusum_target</span>
@@ -151,10 +155,12 @@
 <span class="co">#&gt; 11  8 5.461538  2.5384615 -3.076923e+00    2.3846154</span>
 <span class="co">#&gt; 12  9 5.461538  3.5384615  4.615385e-01    5.9230769</span>
 <span class="co">#&gt; 13  5 5.461538 -0.4615385 -1.776357e-15    5.4615385</span></code></pre></div>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">variance_df</span><span class="op">$</span><span class="va">x</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">5</span>, <span class="fl">15</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="va">variance_df</span><span class="op">$</span><span class="va">x</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="va">variance_df</span><span class="op">$</span><span class="va">target</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/qplot.html">qplot</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">variance_df</span><span class="op">$</span><span class="va">x</span><span class="op">)</span>
+<span class="va">p</span> <span class="op">&lt;-</span> <span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">p</span> <span class="op">&lt;-</span> <span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_hline</a></span><span class="op">(</span>yintercept <span class="op">=</span> <span class="va">variance_df</span><span class="op">$</span><span class="va">target</span><span class="op">)</span>
+<span class="va">p</span></code></pre></div>
 <p><img src="man/figures/baseplot2-1.png" width="1500"></p>
 </div>
 <div id="cusum_control" class="section level2">
@@ -166,14 +172,12 @@
 - variance of x from target<br>
 - std_dev - you can supply a standard deviation (if known), or it is calculated for you using the screened moving range of x<br>
 - cusum is the cumulative sum of the variance<br>
-- cplus and cneg depend on the target and <code>k</code> values, and also relate to the current x value and previous <code>cplus</code> or <code>cneg</code> value.</p>
-<ul>
-<li><p><code>cum_nplus</code> and <code>cum_nneg</code> are also iterative values that calculate the number of consecutively rising or declining points</p></li>
-<li><p>ucl and lcl are derived from the provided <code>h</code> value (usually between 4 and 5, defaults to 4). This is multiplied by the <code>std_dev</code> to calculate the upper and lower control limits (<code>ucl</code> and <code>lcl</code> respectively).</p></li>
-<li><p>the centre value is always 0</p></li>
-<li><p>obs provides a reference for each value of x, for ease of plotting.</p></li>
-</ul>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+- cplus and cneg depend on the target and <code>k</code> values, and also relate to the current x value and previous <code>cplus</code> or <code>cneg</code> value. These are the values that get plotted on the control chart, hence why you only have to supply an argument for the <code>x</code> axis.</p>
+<p><code>- cum_nplus</code> and <code>cum_nneg</code> are also iterative values that calculate the number of consecutively rising or declining points.</p>
+<p>- ucl and lcl are derived from the provided <code>h</code> value (usually between 4 and 5, defaults to 4). This is multiplied by the <code>std_dev</code> to calculate the upper and lower control limits (<code>ucl</code> and <code>lcl</code> respectively).</p>
+<p>- the centre value is always 0</p>
+<p>- obs provides a reference for each value of x, for ease of plotting.</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">cs_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cusum_control.html">cusum_control</a></span><span class="op">(</span><span class="va">test_vec</span><span class="op">)</span>
 <span class="co">#&gt; no target value supplied, so using the mean of x</span>
 <span class="va">cs_data</span>
@@ -212,15 +216,19 @@
 <p><em>The <code>cusum_control</code> function is the most complex and important function in the package</em></p>
 <p>The outputs are not much to look at however, so we harness the power of <code>ggplot2</code> to enjoy the benefits</p>
 <p>If we assume that we don’t want to be outside our upper control limit, we can see that we now have a problem:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/cusum_control_plot.html">cusum_control_plot</a></span><span class="op">(</span><span class="va">cs_data</span>,xvar <span class="op">=</span> <span class="va">obs</span><span class="op">)</span></code></pre></div>
-<p><img src="man/figures/cusumcontrolplot-1.png" width="1500"> We can also highlight points below the lower control limit using <code>show_below</code></p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/cusum_control_plot.html">cusum_control_plot</a></span><span class="op">(</span><span class="va">cs_data</span>,xvar <span class="op">=</span> <span class="va">obs</span><span class="op">)</span></code></pre></div>
+<p><img src="man/figures/cusumcontrolplot-1.png" width="1500"></p>
+<p>We can also highlight points below the lower control limit using <code>show_below</code></p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/cusum_control_plot.html">cusum_control_plot</a></span><span class="op">(</span><span class="va">cs_data</span>,xvar <span class="op">=</span> <span class="va">obs</span>, show_below <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p><img src="man/figures/controlplotshow-1.png" width="1500"></p>
-<p>##Faceted displays and flexible x axis</p>
+</div>
+<div id="faceted-displays-and-flexible-x-axis" class="section level2">
+<h2 class="hasAnchor">
+<a href="#faceted-displays-and-flexible-x-axis" class="anchor"></a>Faceted displays and flexible x axis</h2>
 <p>We can plot many charts at once by using <code>dplyr</code> or `<code>data.table</code> to group the data</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Attaching package: 'dplyr'</span>
