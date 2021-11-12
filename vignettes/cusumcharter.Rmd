@@ -22,11 +22,12 @@ knitr::opts_chunk$set(
 
 ```{r setup}
 library(cusumcharter)
+library(ggplot2)
 ```
 
 ## Rationale
 
-Basic CUSUM statistics are fairly straightforward to construct in a spreadsheet, if you only need to compare to a target value, or the mean of your data. However, turning this into a control chart takes a lot more work, especially if you have several metrics to analyse. 
+Basic CUSUM statistics are fairly straightforward to construct in a spreadsheet, if you only need to compare to a target value, or the mean of your data. However, turning this into a control chart takes a lot more work, especially if you have several metrics to analyse.
 
 The goal of this package is to allow you to pass simple vectors in, and receive data back that contains all the information you need to create faceted CUSUM control charts - (there is also a function that takes care of this for you).
 
@@ -37,93 +38,93 @@ test_vec <- c(1,1,2,3,5,7,11,7,5,7,8,9,5)
 test_vec
 ```
 
-Here is our data, nothing too exciting is it?  
+Here is our data, nothing too exciting is it?
 
-_Or is it?_
+*Or is it?*
 
 Let's find out..
 
-## cusum_single_df
+## cusum_single
 
 ```{r baseplot, fig.width=5, fig.height=3}
 test_vec <- c(1,1,2,3,5,7,11,7,5,7,8,9,5)
 variances <- cusum_single(test_vec)
-plot(variances)
-lines(variances)
-lines(rep(0,13))
+p <- qplot(y = variances)
+p <- p + geom_line()
+p + geom_hline(yintercept = 0)
+p
+
 ```
 
-This bare bones plot tells us quite a lot. Our measure of interest started off with small variances, resulting in points below the centre line at 0, but the variances increased, the points crossed over the centre line. 
+This bare bones plot tells us quite a lot. Our measure of interest started off with small variances, resulting in points below the centre line at 0, but the variances increased, the points crossed over the centre line.
 
 ## cusum_single_df
 
-We input the same vector - this time using the ```cusum_single_df``` function. 
-This returns :
+We input the same vector - this time using the `cusum_single_df` function. This returns :
 
-- our original vector
-- the target value (if not supplied, the mean is calculated)
-- the variance of each data point from the target
-- the cumulative sum of these variances
-- the cumulative sum of these variances, centred on the target value ( by adding the target to the cumulative sum, i.e. adding ```cusum_target``` to ```cusumx```)
+-   our original vector
+-   the target value (if not supplied, the mean is calculated)
+-   the variance of each data point from the target
+-   the cumulative sum of these variances
+-   the cumulative sum of these variances, centred on the target value ( by adding the target to the cumulative sum, i.e. adding `cusum_target` to `cusumx`)
 
 ```{r singledf}
 variance_df <- cusum_single_df(test_vec)
 variance_df
 ```
 
-
 ```{r baseplot2,fig.width=5, fig.height=3}
-plot(variance_df$x, ylim = c(-5, 15))
-lines(variance_df$x)
-lines(variance_df$target)
-```
 
+p <- qplot(y = variance_df$x)
+p <- p + geom_line()
+p <- p + geom_hline(yintercept = variance_df$target)
+p
+```
 
 ## cusum_control
 
-Here we input the same vector, and receive even more information back :  
--  our original vector (x)  
-- target (supplied or calculated)  
-- variance of x from target  
-- std_dev - you can supply a standard deviation (if known), or it is calculated for you using the screened moving range of x  
-- cusum is the cumulative sum of the variance  
-- cplus and cneg depend on the target and ```k``` values, and also relate to the current x value and previous ```cplus``` or ```cneg``` value.  
+Here we input the same vector, and receive even more information back :\
+- our original vector (x)\
+- target (supplied or calculated)\
+- variance of x from target\
+- std_dev - you can supply a standard deviation (if known), or it is calculated for you using the screened moving range of x\
+- cusum is the cumulative sum of the variance\
+- cplus and cneg depend on the target and `k` values, and also relate to the current x value and previous `cplus` or `cneg` value. These are the values that get plotted on the control chart, hence why you only have to supply an argument for the `x` axis.
 
-- ```cum_nplus``` and ```cum_nneg``` are also iterative values that calculate the number of consecutively rising or declining points
+`- cum_nplus` and `cum_nneg` are also iterative values that calculate the number of consecutively rising or declining points.
 
-- ucl and lcl are derived from the provided ```h``` value (usually between 4 and 5, defaults to 4). This is multiplied by the ```std_dev``` to calculate the upper and lower control limits (```ucl``` and ```lcl``` respectively).  
+\- ucl and lcl are derived from the provided `h` value (usually between 4 and 5, defaults to 4). This is multiplied by the `std_dev` to calculate the upper and lower control limits (`ucl` and `lcl` respectively).
 
-- the centre value is always 0
+\- the centre value is always 0
 
-- obs provides a reference for each value of x, for ease of plotting. 
+\- obs provides a reference for each value of x, for ease of plotting.
 
 ```{r cusumcontrol}
 cs_data <- cusum_control(test_vec)
 cs_data
 ```
 
-
 ## cusum_control_plot
 
-*The ```cusum_control``` function is the most complex and important function in the package*  
+*The `cusum_control` function is the most complex and important function in the package*
 
-The outputs are not much to look at however, so we harness the power of ```ggplot2``` to enjoy the benefits
+The outputs are not much to look at however, so we harness the power of `ggplot2` to enjoy the benefits
 
-If we assume that we don't want to be outside our upper control limit, we can see that we now have a problem: 
+If we assume that we don't want to be outside our upper control limit, we can see that we now have a problem:
 
 ```{r cusumcontrolplot,fig.width=5, fig.height=3}
 cusum_control_plot(cs_data,xvar = obs)
 ```
-We can also highlight points below the lower control limit using ```show_below```
+
+We can also highlight points below the lower control limit using `show_below`
 
 ```{r controlplotshow,fig.width=5, fig.height=3}
 cusum_control_plot(cs_data,xvar = obs, show_below = TRUE)
 ```
 
-##Faceted displays and flexible x axis
+## Faceted displays and flexible x axis
 
-We can plot many charts at once by using ```dplyr``` or ```data.table`` to group the data
-
+We can plot many charts at once by using `dplyr` or \``data.table` to group the data
 
 ```{r facetcontrolplots,fig.width=5, fig.height=3}
 library(dplyr)
@@ -159,6 +160,3 @@ p5 <- cusum_control_plot(testres,
 p5
 
 ```
-
-
-
