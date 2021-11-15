@@ -1,6 +1,6 @@
 Package: cusumcharter
 Title: Easier CUSUM Control Charts 
-Version: 0.1.0
+Version: 0.1.9000
 Authors@R: 
     person(given = "John",
            family = "MacKintosh",
