@@ -41,6 +41,13 @@ Any points outside these limits are an indication that the process is out of con
 
 ## Installation
 
+Install the latest stable version from CRAN :
+
+```{r, eval = FALSE}
+install.packages("cusumcharter")
+```
+
+
 Install the development version from [GitHub](https://github.com/) with:
 
 ``` r

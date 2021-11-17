@@ -39,6 +39,12 @@ process is out of control.
 
 ## Installation
 
+Install the latest stable version from CRAN :
+
+``` r
+install.packages("cusumcharter")
+```
+
 Install the development version from [GitHub](https://github.com/) with:
 
 ``` r
@@ -166,6 +172,7 @@ library(dplyr)
 #> 
 #>     intersect, setdiff, setequal, union
 library(tibble)
+#> Warning: package 'tibble' was built under R version 4.1.1
 library(ggplot2)
 library(cusumcharter)
 
