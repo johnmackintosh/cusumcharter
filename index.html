@@ -97,8 +97,11 @@
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p>Install the development version from <a href="https://github.com/">GitHub</a> with:</p>
+<p>Install the latest stable version from CRAN :</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"cusumcharter"</span><span class="op">)</span></code></pre></div>
+<p>Install the development version from <a href="https://github.com/">GitHub</a> with:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages("remotes")</span>
 <span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"johnmackintosh/cusumcharter"</span><span class="op">)</span></code></pre></div>
 </div>
@@ -106,7 +109,7 @@
 <h2 class="hasAnchor">
 <a href="#a-simple-cusum-calculation" class="anchor"></a>A Simple CUSUM calculation</h2>
 <p>This returns the CUSUM statistics for a single vector, centred on a supplied target value:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/johnmackintosh/cusumcharter">cusumcharter</a></span><span class="op">)</span>
 <span class="va">test_vec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.175</span>, <span class="fl">0.152</span>, <span class="fl">0.15</span>, <span class="fl">0.207</span>, <span class="fl">0.136</span>, <span class="fl">0.212</span>, <span class="fl">0.166</span><span class="op">)</span>
 
@@ -118,7 +121,7 @@
 <h2 class="hasAnchor">
 <a href="#expanded-outputs-with-cusum_single_df" class="anchor"></a>Expanded outputs with cusum_single_df</h2>
 <p>This function takes a single vector as input and returns a data.frame with additional information used to calculate the CUSUM statistic</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">test_vec2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.175</span>, <span class="fl">0.152</span>, <span class="fl">0.15</span>, <span class="fl">0.207</span>, <span class="fl">0.136</span>, <span class="fl">0.212</span>, <span class="fl">0.166</span><span class="op">)</span>
 <span class="fu"><a href="reference/cusum_single_df.html">cusum_single_df</a></span><span class="op">(</span><span class="va">test_vec2</span>, target <span class="op">=</span> <span class="fl">0.16</span><span class="op">)</span>
 <span class="co">#&gt;       x target     si cusumx cusum_target</span>
@@ -130,7 +133,7 @@
 <span class="co">#&gt; 6 0.212   0.16  0.052  0.072        0.232</span>
 <span class="co">#&gt; 7 0.166   0.16  0.006  0.078        0.238</span></code></pre></div>
 <p>Here we don’t supply a target, so the mean is used</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">test_vec3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">11</span>,<span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">7</span>,<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">5</span><span class="op">)</span>
 <span class="fu"><a href="reference/cusum_single_df.html">cusum_single_df</a></span><span class="op">(</span><span class="va">test_vec3</span><span class="op">)</span>
 <span class="co">#&gt;     x target si cusumx cusum_target</span>
@@ -150,7 +153,7 @@
 <h2 class="hasAnchor">
 <a href="#cusum-control-limits" class="anchor"></a>CUSUM control limits</h2>
 <p>Two additional functions allow you to calculate control limits from a single vector and plot a CUSUM chart with control limits. As before, the mean is used to determine the target if none is provided. Alternate functions are available if you wish to use the median instead.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">test_vec3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">7</span>,<span class="fl">11</span>,<span class="fl">7</span>,<span class="fl">5</span>,<span class="fl">7</span>,<span class="fl">8</span>,<span class="fl">9</span>,<span class="fl">5</span><span class="op">)</span>
 <span class="va">controls</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/cusum_control.html">cusum_control</a></span><span class="op">(</span><span class="va">test_vec3</span>, target <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>
 <span class="va">controls</span>
@@ -187,7 +190,7 @@
 <div id="cusum-control-chart" class="section level2">
 <h2 class="hasAnchor">
 <a href="#cusum-control-chart" class="anchor"></a>CUSUM Control Chart</h2>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">test_vec3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">7</span>,<span class="fl">11</span>,<span class="fl">7</span>,<span class="fl">5</span>,<span class="fl">7</span>,<span class="fl">8</span>,<span class="fl">9</span>,<span class="fl">5</span><span class="op">)</span>
 <span class="va">controls</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/cusum_control.html">cusum_control</a></span><span class="op">(</span><span class="va">test_vec3</span>, target <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>
 
@@ -199,7 +202,7 @@
 <div id="multiple-cusum-control-charts" class="section level2">
 <h2 class="hasAnchor">
 <a href="#multiple-cusum-control-charts" class="anchor"></a>Multiple CUSUM Control Charts</h2>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Attaching package: 'dplyr'</span>
@@ -210,6 +213,7 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt;     intersect, setdiff, setequal, union</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tibble.tidyverse.org/">tibble</a></span><span class="op">)</span>
+<span class="co">#&gt; Warning: package 'tibble' was built under R version 4.1.1</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/johnmackintosh/cusumcharter">cusumcharter</a></span><span class="op">)</span>
 
@@ -239,7 +243,7 @@
 <h2 class="hasAnchor">
 <a href="#flexible-x-axis" class="anchor"></a>Flexible x axis</h2>
 <p>Here we add a date column, specify that the <code>scale_type</code> is <code>'date'</code>, and provide the <code>datebreaks</code> argument to plot our data over time</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/johnmackintosh/cusumcharter">cusumcharter</a></span><span class="op">)</span>
@@ -283,7 +287,7 @@
 <h2 class="hasAnchor">
 <a href="#highlight-above-and-below-control-limits" class="anchor"></a>Highlight above and below control limits</h2>
 <p>Points outside the Upper Control Limit are always highlighted. Use the <code>show_below</code> option to enable highlighting points below the Lower Control Limit</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/johnmackintosh/cusumcharter">cusumcharter</a></span><span class="op">)</span>
