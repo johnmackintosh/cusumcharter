@@ -47,7 +47,6 @@ Install the latest stable version from CRAN :
 install.packages("cusumcharter")
 ```
 
-
 Install the development version from [GitHub](https://github.com/) with:
 
 ``` r
