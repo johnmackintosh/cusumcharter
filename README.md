@@ -59,6 +59,8 @@ supplied target value:
 
 ``` r
 library(cusumcharter)
+#> Warning in register(): Can't find generic `scale_type` in package ggplot2 to
+#> register S3 method.
 test_vec <- c(0.175, 0.152, 0.15, 0.207, 0.136, 0.212, 0.166)
 
 cusum_res <- cusum_single(test_vec, target = 0.16)
