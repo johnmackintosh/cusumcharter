@@ -26,6 +26,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -38,18 +40,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cusumcharter</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.9000</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../articles/cusumcharter.html">Get started</a>
 </li>
@@ -62,7 +58,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/johnmackintosh/cusumcharter/">
+  <a href="https://github.com/johnmackintosh/cusumcharter/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -81,11 +77,11 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>cusumcharter</h1>
-                        <h4 class="author">John MacKintosh</h4>
+                        <h4 data-toc-skip class="author">John MacKintosh</h4>
             
-            <h4 class="date">2021-11-17</h4>
+            <h4 data-toc-skip class="date">2022-01-26</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/johnmackintosh/cusumcharter/blob/master/vignettes/cusumcharter.Rmd"><code>vignettes/cusumcharter.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/johnmackintosh/cusumcharter/blob/HEAD/vignettes/cusumcharter.Rmd" class="external-link"><code>vignettes/cusumcharter.Rmd</code></a></small>
       <div class="hidden name"><code>cusumcharter.Rmd</code></div>
 
     </div>
@@ -93,43 +89,45 @@
     
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/johnmackintosh/cusumcharter">cusumcharter</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></code></pre></div>
-<div id="rationale" class="section level2">
-<h2 class="hasAnchor">
-<a href="#rationale" class="anchor"></a>Rationale</h2>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/johnmackintosh/cusumcharter" class="external-link">cusumcharter</a></span><span class="op">)</span>
+<span class="co">#&gt; Warning in register(): Can't find generic `scale_type` in package ggplot2 to</span>
+<span class="co">#&gt; register S3 method.</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></code></pre></div>
+<div class="section level2">
+<h2 id="rationale">Rationale<a class="anchor" aria-label="anchor" href="#rationale"></a>
+</h2>
 <p>Basic CUSUM statistics are fairly straightforward to construct in a spreadsheet, if you only need to compare to a target value, or the mean of your data. However, turning this into a control chart takes a lot more work, especially if you have several metrics to analyse.</p>
 <p>The goal of this package is to allow you to pass simple vectors in, and receive data back that contains all the information you need to create faceted CUSUM control charts - (there is also a function that takes care of this for you).</p>
 </div>
-<div id="a-journey-through-the-package-functions" class="section level2">
-<h2 class="hasAnchor">
-<a href="#a-journey-through-the-package-functions" class="anchor"></a>A journey through the package functions</h2>
+<div class="section level2">
+<h2 id="a-journey-through-the-package-functions">A journey through the package functions<a class="anchor" aria-label="anchor" href="#a-journey-through-the-package-functions"></a>
+</h2>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">test_vec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">7</span>,<span class="fl">11</span>,<span class="fl">7</span>,<span class="fl">5</span>,<span class="fl">7</span>,<span class="fl">8</span>,<span class="fl">9</span>,<span class="fl">5</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">test_vec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">7</span>,<span class="fl">11</span>,<span class="fl">7</span>,<span class="fl">5</span>,<span class="fl">7</span>,<span class="fl">8</span>,<span class="fl">9</span>,<span class="fl">5</span><span class="op">)</span>
 <span class="va">test_vec</span>
 <span class="co">#&gt;  [1]  1  1  2  3  5  7 11  7  5  7  8  9  5</span></code></pre></div>
 <p>Here is our data, nothing too exciting is it?</p>
 <p><em>Or is it?</em></p>
 <p>Let’s find out..</p>
 </div>
-<div id="cusum_single" class="section level2">
-<h2 class="hasAnchor">
-<a href="#cusum_single" class="anchor"></a>cusum_single</h2>
+<div class="section level2">
+<h2 id="cusum_single">cusum_single<a class="anchor" aria-label="anchor" href="#cusum_single"></a>
+</h2>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">test_vec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">7</span>,<span class="fl">11</span>,<span class="fl">7</span>,<span class="fl">5</span>,<span class="fl">7</span>,<span class="fl">8</span>,<span class="fl">9</span>,<span class="fl">5</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">test_vec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">7</span>,<span class="fl">11</span>,<span class="fl">7</span>,<span class="fl">5</span>,<span class="fl">7</span>,<span class="fl">8</span>,<span class="fl">9</span>,<span class="fl">5</span><span class="op">)</span>
 <span class="va">variances</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cusum_single.html">cusum_single</a></span><span class="op">(</span><span class="va">test_vec</span><span class="op">)</span>
-<span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/qplot.html">qplot</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">variances</span><span class="op">)</span>
-<span class="va">p</span> <span class="op">&lt;-</span> <span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span>
-<span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_hline</a></span><span class="op">(</span>yintercept <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></code></pre></div>
-<p><img src="man/figures/baseplot-1.png" width="1500"></p>
+<span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/qplot.html" class="external-link">qplot</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">variances</span><span class="op">)</span>
+<span class="va">p</span> <span class="op">&lt;-</span> <span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">geom_hline</a></span><span class="op">(</span>yintercept <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></code></pre></div>
+<p><img src="reference/figures/baseplot-1.png" width="1500"></p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">p</span></code></pre></div>
-<p><img src="man/figures/baseplot-2.png" width="1500"></p>
+<p><img src="reference/figures/baseplot-2.png" width="1500"></p>
 <p>This bare bones plot tells us quite a lot. Our measure of interest started off with small variances, resulting in points below the centre line at 0, but the variances increased, the points crossed over the centre line.</p>
 </div>
-<div id="cusum_single_df" class="section level2">
-<h2 class="hasAnchor">
-<a href="#cusum_single_df" class="anchor"></a>cusum_single_df</h2>
+<div class="section level2">
+<h2 id="cusum_single_df">cusum_single_df<a class="anchor" aria-label="anchor" href="#cusum_single_df"></a>
+</h2>
 <p>We input the same vector - this time using the <code>cusum_single_df</code> function. This returns :</p>
 <ul>
 <li>our original vector</li>
@@ -157,15 +155,15 @@
 <span class="co">#&gt; 13  5 5.461538 -0.4615385 -1.776357e-15    5.4615385</span></code></pre></div>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
-<span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/qplot.html">qplot</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">variance_df</span><span class="op">$</span><span class="va">x</span><span class="op">)</span>
-<span class="va">p</span> <span class="op">&lt;-</span> <span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span>
-<span class="va">p</span> <span class="op">&lt;-</span> <span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_hline</a></span><span class="op">(</span>yintercept <span class="op">=</span> <span class="va">variance_df</span><span class="op">$</span><span class="va">target</span><span class="op">)</span>
+<span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/qplot.html" class="external-link">qplot</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">variance_df</span><span class="op">$</span><span class="va">x</span><span class="op">)</span>
+<span class="va">p</span> <span class="op">&lt;-</span> <span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">p</span> <span class="op">&lt;-</span> <span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">geom_hline</a></span><span class="op">(</span>yintercept <span class="op">=</span> <span class="va">variance_df</span><span class="op">$</span><span class="va">target</span><span class="op">)</span>
 <span class="va">p</span></code></pre></div>
-<p><img src="man/figures/baseplot2-1.png" width="1500"></p>
+<p><img src="reference/figures/baseplot2-1.png" width="1500"></p>
 </div>
-<div id="cusum_control" class="section level2">
-<h2 class="hasAnchor">
-<a href="#cusum_control" class="anchor"></a>cusum_control</h2>
+<div class="section level2">
+<h2 id="cusum_control">cusum_control<a class="anchor" aria-label="anchor" href="#cusum_control"></a>
+</h2>
 <p>Here we input the same vector, and receive even more information back :<br>
 - our original vector (x)<br>
 - target (supplied or calculated)<br>
@@ -210,26 +208,26 @@
 <span class="co">#&gt; 12        0 7.092199 -7.092199      0  12</span>
 <span class="co">#&gt; 13        0 7.092199 -7.092199      0  13</span></code></pre></div>
 </div>
-<div id="cusum_control_plot" class="section level2">
-<h2 class="hasAnchor">
-<a href="#cusum_control_plot" class="anchor"></a>cusum_control_plot</h2>
+<div class="section level2">
+<h2 id="cusum_control_plot">cusum_control_plot<a class="anchor" aria-label="anchor" href="#cusum_control_plot"></a>
+</h2>
 <p><em>The <code>cusum_control</code> function is the most complex and important function in the package</em></p>
 <p>The outputs are not much to look at however, so we harness the power of <code>ggplot2</code> to enjoy the benefits</p>
 <p>If we assume that we don’t want to be outside our upper control limit, we can see that we now have a problem:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/cusum_control_plot.html">cusum_control_plot</a></span><span class="op">(</span><span class="va">cs_data</span>,xvar <span class="op">=</span> <span class="va">obs</span><span class="op">)</span></code></pre></div>
-<p><img src="man/figures/cusumcontrolplot-1.png" width="1500"></p>
+<p><img src="reference/figures/cusumcontrolplot-1.png" width="1500"></p>
 <p>We can also highlight points below the lower control limit using <code>show_below</code></p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/cusum_control_plot.html">cusum_control_plot</a></span><span class="op">(</span><span class="va">cs_data</span>,xvar <span class="op">=</span> <span class="va">obs</span>, show_below <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
-<p><img src="man/figures/controlplotshow-1.png" width="1500"></p>
+<p><img src="reference/figures/controlplotshow-1.png" width="1500"></p>
 </div>
-<div id="faceted-displays-and-flexible-x-axis" class="section level2">
-<h2 class="hasAnchor">
-<a href="#faceted-displays-and-flexible-x-axis" class="anchor"></a>Faceted displays and flexible x axis</h2>
+<div class="section level2">
+<h2 id="faceted-displays-and-flexible-x-axis">Faceted displays and flexible x axis<a class="anchor" aria-label="anchor" href="#faceted-displays-and-flexible-x-axis"></a>
+</h2>
 <p>We can plot many charts at once by using <code>dplyr</code> or `<code>data.table</code> to group the data</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Attaching package: 'dplyr'</span>
 <span class="co">#&gt; The following objects are masked from 'package:stats':</span>
@@ -238,28 +236,28 @@
 <span class="co">#&gt; The following objects are masked from 'package:base':</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;     intersect, setdiff, setequal, union</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/johnmackintosh/cusumcharter">cusumcharter</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/johnmackintosh/cusumcharter" class="external-link">cusumcharter</a></span><span class="op">)</span>
 
-<span class="va">testdata</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>
-N <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">15L</span>,<span class="fl">2L</span>,<span class="op">-</span><span class="fl">11L</span>,<span class="fl">3L</span>,<span class="fl">1L</span>,<span class="fl">1L</span>,<span class="op">-</span><span class="fl">11L</span>,<span class="fl">1L</span>,<span class="fl">1L</span>,
+<span class="va">testdata</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span>
+N <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">15L</span>,<span class="fl">2L</span>,<span class="op">-</span><span class="fl">11L</span>,<span class="fl">3L</span>,<span class="fl">1L</span>,<span class="fl">1L</span>,<span class="op">-</span><span class="fl">11L</span>,<span class="fl">1L</span>,<span class="fl">1L</span>,
 <span class="fl">2L</span>,<span class="fl">1L</span>,<span class="fl">1L</span>,<span class="fl">1L</span>,<span class="fl">10L</span>,<span class="fl">7L</span>,<span class="fl">9L</span>,<span class="fl">11L</span>,<span class="fl">9L</span><span class="op">)</span>,
-metric <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"metric1"</span>,<span class="st">"metric1"</span>,<span class="st">"metric1"</span>,<span class="st">"metric1"</span>,<span class="st">"metric1"</span>,
+metric <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"metric1"</span>,<span class="st">"metric1"</span>,<span class="st">"metric1"</span>,<span class="st">"metric1"</span>,<span class="st">"metric1"</span>,
 <span class="st">"metric1"</span>,<span class="st">"metric1"</span>,<span class="st">"metric1"</span>,<span class="st">"metric1"</span>,<span class="st">"metric2"</span>,
 <span class="st">"metric2"</span>,<span class="st">"metric2"</span>,<span class="st">"metric2"</span>,<span class="st">"metric2"</span>,<span class="st">"metric2"</span>,
 <span class="st">"metric2"</span>,<span class="st">"metric2"</span>,<span class="st">"metric2"</span><span class="op">)</span><span class="op">)</span>
 
-<span class="va">datecol</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"2021-01-01"</span>,<span class="st">"2021-01-02"</span>, <span class="st">"2021-01-03"</span>, <span class="st">"2021-01-04"</span> ,
+<span class="va">datecol</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"2021-01-01"</span>,<span class="st">"2021-01-02"</span>, <span class="st">"2021-01-03"</span>, <span class="st">"2021-01-04"</span> ,
              <span class="st">"2021-01-05"</span>, <span class="st">"2021-01-06"</span>,<span class="st">"2021-01-07"</span>, <span class="st">"2021-01-08"</span>,
              <span class="st">"2021-01-09"</span><span class="op">)</span><span class="op">)</span>
 
-<span class="va">testres</span> <span class="op">&lt;-</span> <span class="va">testdata</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">metric</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="fu"><a href="../reference/cusum_control.html">cusum_control</a></span><span class="op">(</span><span class="va">N</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">metric</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>report_date <span class="op">=</span> <span class="va">datecol</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">testres</span> <span class="op">&lt;-</span> <span class="va">testdata</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">metric</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span><span class="fu"><a href="../reference/cusum_control.html">cusum_control</a></span><span class="op">(</span><span class="va">N</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">ungroup</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">metric</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>report_date <span class="op">=</span> <span class="va">datecol</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">ungroup</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; no target value supplied, so using the mean of x</span>
 <span class="co">#&gt; no target value supplied, so using the mean of x</span>
 
@@ -270,7 +268,7 @@ metric <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/bas
                          facet_var <span class="op">=</span> <span class="va">metric</span>,
                          title_text <span class="op">=</span> <span class="st">"Highlights above and below control limits"</span><span class="op">)</span>
 <span class="va">p5</span></code></pre></div>
-<p><img src="man/figures/facetcontrolplots-1.png" width="1500"></p>
+<p><img src="reference/figures/facetcontrolplots-1.png" width="1500"></p>
 </div>
   </div>
 
@@ -285,11 +283,13 @@ metric <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/bas
 
 
       <footer><div class="copyright">
-  <p>Developed by John MacKintosh.</p>
+  <p></p>
+<p>Developed by John MacKintosh.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>
@@ -297,6 +297,8 @@ metric <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/bas
 
   
 
+
+  
 
   </body>
 </html>
