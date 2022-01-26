@@ -2,21 +2,20 @@
 % Please edit documentation in R/cusum_single.R
 \name{cusum_single}
 \alias{cusum_single}
-\title{cusum_single}
+\title{Calculates the cumulative sum statistic relative to target, or mean value}
 \usage{
 cusum_single(x, target = NULL)
 }
 \arguments{
 \item{x}{a numeric vector from which to calculate the cumulative sum statistics}
 
-\item{target}{value to compare each element of x to. If not provided, the mean of
-x will be calculated and used as a target value}
+\item{target}{value to compare each element of x to. If not provided, the mean of x will be calculated and used as a target value}
 }
 \value{
 a vector of the cumulative sum statistic, centred on the target value
 }
 \description{
-cusum_single
+Calculates the cumulative sum statistic of a vector of values, centred on either the mean of the data, or a supplied target value.
 }
 \examples{
 

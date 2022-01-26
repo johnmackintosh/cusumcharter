@@ -1,4 +1,6 @@
-#' cusum_control_median
+#' Calculate cusum control limits centred on target value or median
+#'
+#' Calculates cusum statistics and control limits based on input parameters. If no target value is supplied the median of the x value will be used.
 #'
 #' @param x  input vector
 #' @param target  target value for comparison, the median of x will be used if missing
