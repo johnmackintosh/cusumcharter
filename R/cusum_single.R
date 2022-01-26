@@ -1,8 +1,9 @@
-#' cusum_single
+#' Calculates the cumulative sum statistic relative to target, or mean value
+#'
+#' Calculates the cumulative sum statistic of a vector of values, centred on either the mean of the data, or a supplied target value.
 #'
 #' @param x a numeric vector from which to calculate the cumulative sum statistics
-#' @param target value to compare each element of x to. If not provided, the mean of
-#' x will be calculated and used as a target value
+#' @param target value to compare each element of x to. If not provided, the mean of x will be calculated and used as a target value
 #'
 #' @return a vector of the cumulative sum statistic, centred on the target value
 #' @export

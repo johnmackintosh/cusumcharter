@@ -2,21 +2,20 @@
 % Please edit documentation in R/cusum_single_median.R
 \name{cusum_single_median}
 \alias{cusum_single_median}
-\title{cusum_single_median}
+\title{Calculates the cumulative sum statistic relative to target, or median value}
 \usage{
 cusum_single_median(x, target = NULL)
 }
 \arguments{
 \item{x}{a numeric vector from which to calculate the cumulative sum statistics}
 
-\item{target}{value to compare each element of x to. If not provided, the median value of
-x will be calculated and used as a target value}
+\item{target}{value to compare each element of x to. If not provided, the median value of x will be calculated and used as a target value}
 }
 \value{
 a vector of the cumulative sum statistic, centred on the target value
 }
 \description{
-cusum_single_median
+Calculates the cumulative sum statistic of a vector of values, centred on either the median of the data, or a supplied target value.
 }
 \examples{
 

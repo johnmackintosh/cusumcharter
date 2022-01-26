@@ -2,7 +2,7 @@
 % Please edit documentation in R/cusum_control.R
 \name{cusum_control}
 \alias{cusum_control}
-\title{cusum_control}
+\title{Calculate cusum control limits centred on target value or mean}
 \usage{
 cusum_control(
   x,
@@ -33,7 +33,7 @@ The standard deviation is multiplied by this value to determine the upper and lo
 data.frame showing original inputs and calculated control limits
 }
 \description{
-cusum_control
+Calculates cusum statistics and control limits based on input parameters. If no target value is supplied the mean of the x value will be used.
 }
 \examples{
 test_vec3 <- c(1,1,2,3,5,7,11,7,5,7,8,9,5)

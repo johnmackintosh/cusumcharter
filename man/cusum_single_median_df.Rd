@@ -2,7 +2,7 @@
 % Please edit documentation in R/cusum_single_median_df.R
 \name{cusum_single_median_df}
 \alias{cusum_single_median_df}
-\title{cusum_single_median_df}
+\title{Cumulative sum statistics and variances, centred on target value or median}
 \usage{
 cusum_single_median_df(x, target = NULL)
 }
@@ -16,7 +16,8 @@ x will be calculated and used as a target value}
 a dataframe with the original values, target, the variance, the cumulative sum of the variance, and the cumulative sum centered on the target value. This centering is achieved by adding the target value to the cumulative sum.
 }
 \description{
-cusum_single_median_df
+Provides substantially more information than \code{\link{cusum_single_median}}.
+Outputs a  data.frame with the original values, target, the variance, the cumulative sum of the variance, and the cumulative sum centered on the target value. This centering is achieved by adding the target value to the cumulative sum.
 }
 \examples{
 

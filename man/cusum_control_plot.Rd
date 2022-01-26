@@ -2,7 +2,7 @@
 % Please edit documentation in R/cusum_control_plot.R
 \name{cusum_control_plot}
 \alias{cusum_control_plot}
-\title{cusum_control_plot}
+\title{Cumulative sum control charts as small multiples}
 \usage{
 cusum_control_plot(
   df,
@@ -55,7 +55,7 @@ cusum_control_plot(
 ggplot2 object suited for further amendments if required.
 }
 \description{
-cusum_control_plot
+Returns a ggplot2 object showing calculated control limits. This function should be used after calculating the control limits with either \code{\link{cusum_control}} or \code{\link{cusum_control_median}}.
 }
 \examples{
 test_vec3 <- c(1,1,2,3,5,7,11,7,5,7,8,9,5)

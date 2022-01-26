@@ -1,4 +1,8 @@
-#' cusum_single_df
+#' Cumulative sum statistics and variances, centred on target value or mean
+#'
+#' Provides substantially more information than \code{\link{cusum_single}}.
+#' Outputs a data.frame with the original values, target, the variance, the cumulative sum of the variance, and the cumulative sum centered on the target value. This centering is achieved by adding the target value to the cumulative sum.
+#'
 #'
 #' @param x a numeric vector from which to calculate the cumulative sum statistics
 #' @param target value to compare each element of x to. If not provided, the mean of

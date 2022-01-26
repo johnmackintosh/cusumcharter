@@ -1,4 +1,6 @@
-#' cusum_control
+#' Calculate cusum control limits centred on target value or mean
+#'
+#' Calculates cusum statistics and control limits based on input parameters. If no target value is supplied the mean of the x value will be used.
 #'
 #' @param x  input vector
 #' @param target  target value for comparison, the mean of x will be used if missing
