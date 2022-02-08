@@ -28,6 +28,11 @@ knitr::opts_chunk$set(
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 
 [![CRAN status](https://www.r-pkg.org/badges/version/cusumcharter)](https://CRAN.R-project.org/package=cusumcharter)
+
+[![CRAN Downloads](https://cranlogs.r-pkg.org/badges/cusumcharter)](https://cran.r-project.org/package=cusumcharter)
+
+[![Total Downloads](https://cranlogs.r-pkg.org/badges/grand-total/cusumcharter)](https://cran.r-project.org/package=cusumcharter)
+
 <!-- badges: end -->
 
 The goal of cusumcharter is to create both simple CUSUM charts, with and without control limits from a vector, or to create multiple CUSUM charts, with or without control limits, from a grouped dataframe, tibble or data.table.

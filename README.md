@@ -19,6 +19,13 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 
 [![CRAN
 status](https://www.r-pkg.org/badges/version/cusumcharter)](https://CRAN.R-project.org/package=cusumcharter)
+
+[![CRAN
+Downloads](https://cranlogs.r-pkg.org/badges/cusumcharter)](https://cran.r-project.org/package=cusumcharter)
+
+[![Total
+Downloads](https://cranlogs.r-pkg.org/badges/grand-total/cusumcharter)](https://cran.r-project.org/package=cusumcharter)
+
 <!-- badges: end -->
 
 The goal of cusumcharter is to create both simple CUSUM charts, with and
@@ -59,8 +66,6 @@ supplied target value:
 
 ``` r
 library(cusumcharter)
-#> Warning in register(): Can't find generic `scale_type` in package ggplot2 to
-#> register S3 method.
 test_vec <- c(0.175, 0.152, 0.15, 0.207, 0.136, 0.212, 0.166)
 
 cusum_res <- cusum_single(test_vec, target = 0.16)
@@ -174,6 +179,7 @@ library(dplyr)
 #> 
 #>     intersect, setdiff, setequal, union
 library(tibble)
+#> Warning: package 'tibble' was built under R version 4.1.2
 library(ggplot2)
 library(cusumcharter)
 
