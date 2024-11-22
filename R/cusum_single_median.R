@@ -15,6 +15,9 @@
 #' cusum_single_median(test_vec)
 #'
 cusum_single_median <- function(x, target = NULL) {
+
+  .Deprecated(msg = "cusum_single_median() will be removed in the next version\nPlease use cusum_vec(x, FUN = `median`) instead")
+
   stopifnot(is.numeric(x) | is.double(x) | is.integer(x))
   stopifnot(!is.na(x))
   stopifnot(is.numeric(target) | is.double(target) | is.integer(target) | is.null(target))

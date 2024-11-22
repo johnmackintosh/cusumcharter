@@ -60,10 +60,12 @@ p <- ggplot2::ggplot(df, ggplot2::aes(x = {{xvar}},
 # blue lines / points for the cplus variable
 p <- p + ggplot2::geom_line(ggplot2::aes(x = {{xvar}},
                                          y = .data$cplus,
-                                         group = 1), colour = pos_col) +
+                                         group = 1), colour = pos_col,
+                            linewidth = 1.1) +
   ggplot2::geom_point(ggplot2::aes(x = {{xvar}},
                                     y = .data$cplus,
-                                    group = 1), colour = pos_col)
+                                    group = 1), colour = pos_col,
+                      size = 1.6)
 
 # points above ucl are always highlighted otherwise the layers get messed up
 
@@ -71,16 +73,19 @@ if (dim(above_ucl)[1] >= 1) {
   p <- p + ggplot2::geom_point(data = above_ucl,
                       ggplot2::aes(x = {{xvar}},
                                    y = .data$cplus, group = 1),
-                      colour = highlight_col)
+                      colour = highlight_col,
+                      size = 1.6)
                             }
 
 
 
 # aqua line for cneg variable
 p <- p + ggplot2::geom_line(ggplot2::aes({{xvar}},.data$cneg, group = 1),
-                            colour = neg_col)
+                            colour = neg_col,
+                            linewidth = 1.1)
 p <- p + ggplot2::geom_point(ggplot2::aes({{xvar}},.data$cneg, group = 1),
-                             colour = neg_col)
+                             colour = neg_col,
+                             size = 1.6)
 
 
 # red points for those below ucl
@@ -90,7 +95,8 @@ if (dim(below_ucl)[1] >= 1) {
   p <- p + ggplot2::geom_point(data = below_ucl,
                                ggplot2::aes(x = {{xvar}},
                                             y = .data$cneg, group = 1),
-                               colour = highlight_col)
+                               colour = highlight_col,
+                               size = 1.6)
                            }
         }
 

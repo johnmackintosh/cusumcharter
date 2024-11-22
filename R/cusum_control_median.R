@@ -21,11 +21,11 @@
 #'controls_median <- cusum_control_median(test_vec3)
 #'
 cusum_control_median <- function(x,
-                          target = NULL,
-                          std_dev = NULL,
-                          desired_shift = 1,
-                          k = 0.5,
-                          h = 4) {
+                                 target = NULL,
+                                 std_dev = NULL,
+                                 desired_shift = 1,
+                                 k = 0.5,
+                                 h = 4) {
   stopifnot(is.numeric(x) | is.double(x) | is.integer(x))
   stopifnot(!is.na(x))
   stopifnot(is.numeric(target) | is.double(target) | is.integer(target) | is.null(target))

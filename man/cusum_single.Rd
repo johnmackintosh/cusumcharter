@@ -2,14 +2,19 @@
 % Please edit documentation in R/cusum_single.R
 \name{cusum_single}
 \alias{cusum_single}
+\alias{cusum_vec}
 \title{Calculates the cumulative sum statistic relative to target, or mean value}
 \usage{
-cusum_single(x, target = NULL)
+cusum_single(x, target = NULL, FUN = "mean")
+
+cusum_vec(x, target = NULL, FUN = "mean")
 }
 \arguments{
 \item{x}{a numeric vector from which to calculate the cumulative sum statistics}
 
-\item{target}{value to compare each element of x to. If not provided, the mean of x will be calculated and used as a target value}
+\item{target}{value to compare each element of x to. If not provided, the target will be calculated using the fun argument}
+
+\item{FUN}{either mean, or median, used to calculate a target value if none is supplied}
 }
 \value{
 a vector of the cumulative sum statistic, centred on the target value
@@ -17,9 +22,16 @@ a vector of the cumulative sum statistic, centred on the target value
 \description{
 Calculates the cumulative sum statistic of a vector of values, centred on either the mean of the data, or a supplied target value.
 }
+\details{
+\code{cusum_vec} is an alias and works the same way.
+}
 \examples{
+
 
 test_vec <- c(0.175, 0.152, 0.15, 0.207, 0.136, 0.212, 0.166)
 cusum_single(test_vec)
+
+test_vec <- c(0.175, 0.152, 0.15, 0.207, 0.136, 0.212, 0.166)
+cusum_vec(test_vec)
 
 }

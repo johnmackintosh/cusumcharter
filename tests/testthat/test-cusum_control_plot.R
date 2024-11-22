@@ -168,7 +168,7 @@ test_that("above ucl points plot", {
 
   expect_equal(dim(p4$layers[[4]]$data)[1],2)
 
-  mylist <- list(colour = "#c9052c")
+  mylist <- list(colour = "#c9052c", size = 1.6)
 
   expect_equal(p4$layers[[4]]$aes_params,mylist) # layer 4 is above ucl
 
@@ -200,7 +200,7 @@ p5 <- cusum_control_plot(testres,
 
 expect_equal(dim(p5$layers[[4]]$data)[1],2)
 
-mylist <- list(colour = "#c9052c")
+mylist <- list(colour = "#c9052c", size = 1.6)
 
 expect_equal(p5$layers[[7]]$aes_params,mylist) #cneg out of bounds is 7th layer
 
